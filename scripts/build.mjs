@@ -60,7 +60,7 @@ write('essays', layout({title:'Essays', description:'Essays by Praveen Gangaraju
 
 for (const e of essays) {
   const related = essays.filter(x=>x.slug!==e.slug).slice(0,2);
-  const body = `<article><header class="article-head"><div class="reading"><p class="eyebrow">Essay</p><h1>${esc(e.title)}</h1><p class="deck">${esc(e.description)}</p><div class="meta">${dateHtml(e)}<span>${e.readingTime}</span></div>${tagHtml(e.tags)}</div></header><div class="article reading">${articleBody(e)}${sourceNote(e)}<div class="article-end"><strong>Continue exploring</strong>${related.map(r=>`<p><a href="/essays/${r.slug}/">${esc(r.title)} →</a></p>`).join('')}</div></div></article>`;
+  const body = `<article><header class="article-head"><div class="reading"><p class="eyebrow">Essay</p><h1>${esc(e.displayTitle || e.title)}</h1>${e.subtitle ? `<p class="article-subtitle">${esc(e.subtitle)}</p>` : ``}<p class="deck">${esc(e.description)}</p><div class="meta">${dateHtml(e)}<span>${e.readingTime}</span></div>${tagHtml(e.tags)}</div></header><div class="article reading">${articleBody(e)}${sourceNote(e)}<div class="article-end"><strong>Continue exploring</strong>${related.map(r=>`<p><a href="/essays/${r.slug}/">${esc(r.title)} →</a></p>`).join('')}</div></div></article>`;
   write(`essays/${e.slug}`, layout({title:e.title, description:e.description, body, active:'essays', canonical:`/essays/${e.slug}/`}));
 }
 
