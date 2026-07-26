@@ -1,8 +1,15 @@
 [
   {
-    "slug":"five-percent-conversations",
-    "title":"5% Conversations",
-    "description":"Conversations that go beyond the usual introduction and explore the experiences that shaped someone.",
-    "status":"The archive and episode notes will be added during the content-migration phase."
+    "slug": "five-percent-conversations",
+    "title": "5% Conversations",
+    "description": "A personal podcast built around curiosity, deliberate learning and the relationships that begin when we take the time to listen.",
+    "spotify": "https://open.spotify.com/show/0p4T6IH9diJGIm2zsyGNcX"
+  },
+  {
+    "slug": "celebrate-2026",
+    "title": "Celebrate 2026",
+    "description": "A UCLA Anderson Executive MBA storytelling series created to help classmates know the people behind the résumés.",
+    "website": "https://drivetime-celebrate2026.streamlit.app/",
+    "ucla": "https://www.anderson.ucla.edu/degrees/executive-mba/culture/drive-time-podcast"
   }
 ]
