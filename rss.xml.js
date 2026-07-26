@@ -1,0 +1,2 @@
+import rss from '@astrojs/rss'; import {getCollection} from 'astro:content';
+export async function GET(context){const posts=await getCollection('essays',({data})=>!data.draft);return rss({title:'Through My Quiet Lens',description:'Essays, conversations and reflections by Praveen Gangaraju.',site:context.site,items:posts.map(p=>({title:p.data.title,description:p.data.description,pubDate:p.data.published,link:`/essays/${p.id}/`}))});}
