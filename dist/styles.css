@@ -122,3 +122,42 @@ footer { padding: 50px 0 28px; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-links { justify-content: start; }
 }
+
+.article h2, .article h3, .article h4 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 2.1em 0 .7em;
+}
+.article h2 { font-size: 2rem; }
+.article h3 { font-size: 1.55rem; }
+.article ul, .article ol {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.18rem;
+  line-height: 1.75;
+  margin: 0 0 1.6em 1.4em;
+}
+.article blockquote {
+  border-left: 3px solid var(--accent);
+  margin: 2.2em 0;
+  padding: .25em 0 .25em 1.4em;
+  color: var(--muted);
+}
+.article blockquote p { font-style: italic; margin-bottom: 0; }
+.article img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 2.5em auto;
+  border-radius: 4px;
+}
+.article a { text-decoration: underline; text-underline-offset: 3px; }
+.source-note {
+  margin-top: 3.5em;
+  padding: 1.2em 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .92rem;
+  line-height: 1.6;
+}
