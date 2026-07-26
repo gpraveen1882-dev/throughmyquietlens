@@ -317,3 +317,17 @@ footer { padding: 50px 0 28px; }
 .dog-visual{margin:2.5rem auto;max-width:720px}
 .dog-visual img{width:100%;height:auto;border-radius:16px;border:1px solid var(--line)}
 @media(max-width:760px){.project-grid{grid-template-columns:1fr}.nav-links{max-height:75vh;overflow:auto}}
+
+
+/* Buttondown email subscription */
+.subscribe-form{margin:2rem 0}
+.subscribe-form label{display:block;font-weight:700;margin-bottom:.65rem}
+.subscribe-row{display:flex;gap:.75rem;align-items:stretch}
+.subscribe-row input{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:.9rem 1rem;font:inherit;background:#fff;color:inherit}
+.subscribe-row input:focus{outline:2px solid var(--accent);outline-offset:2px}
+.subscribe-row .button{border:0;cursor:pointer;white-space:nowrap}
+.form-note{margin-top:.65rem;font-size:.86rem;color:var(--muted)}
+.article-subscribe{margin:3rem 0;padding:2rem;border:1px solid var(--line);border-radius:16px;background:var(--soft)}
+.article-subscribe h2{margin:.25rem 0 .5rem}
+.article-subscribe .button{display:inline-block;margin-top:.5rem}
+@media(max-width:600px){.subscribe-row{flex-direction:column}.subscribe-row .button{width:100%;text-align:center}}

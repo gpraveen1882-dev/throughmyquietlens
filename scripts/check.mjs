@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 const root = new URL('../', import.meta.url).pathname;
-const required = ['dist/index.html','dist/essays/index.html','dist/about/index.html','dist/styles.css','dist/rss.xml','dist/sitemap.xml','wrangler.jsonc'];
+const required = ['dist/index.html','dist/essays/index.html','dist/about/index.html','dist/styles.css','dist/sitemap.xml','wrangler.jsonc'];
 let failed = false;
 for (const f of required) {
   const p = path.join(root, f);

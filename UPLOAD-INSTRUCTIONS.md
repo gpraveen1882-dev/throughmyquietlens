@@ -20,3 +20,11 @@ It also includes the refined article-title hierarchy for **Beyond Networking**.
 6. Click **Push origin**.
 
 See `SUBSTACK-MIGRATION-AUDIT.md` for the complete reconciliation.
+
+
+## Buttondown activation
+1. Create or sign in to Buttondown.
+2. Confirm your publication username.
+3. If it is not `throughmyquietlens`, update `buttondownUsername` in `content/site.json`.
+4. Run `npm run build`, then deploy.
+5. Test the Subscribe form using an email address you can access.
