@@ -304,3 +304,16 @@ footer { padding: 50px 0 28px; }
   .conversation-card { padding: 30px; min-height: 280px; }
   .conversation-story > p { font-size: 1.14rem; }
 }
+
+/* Stage 2: projects, contact and subscribe */
+.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem}
+.project-card,.contact-card,.subscribe-card{border:1px solid var(--line);border-radius:18px;padding:clamp(1.5rem,4vw,2.5rem);background:var(--paper)}
+.project-card h2{margin:.35rem 0 .8rem;font-size:clamp(1.8rem,4vw,2.6rem)}
+.project-story h2{margin-top:2.5rem}
+.project-stat{margin:2rem 0;padding:1.4rem 1.6rem;border-left:4px solid var(--accent);background:var(--soft);display:grid;gap:.25rem}
+.project-stat strong{font-family:var(--serif);font-size:2rem}
+.contact-link{font-family:var(--serif);font-size:clamp(1.35rem,4vw,2rem);overflow-wrap:anywhere}
+.quiet-note{font-style:italic;color:var(--muted)}
+.dog-visual{margin:2.5rem auto;max-width:720px}
+.dog-visual img{width:100%;height:auto;border-radius:16px;border:1px solid var(--line)}
+@media(max-width:760px){.project-grid{grid-template-columns:1fr}.nav-links{max-height:75vh;overflow:auto}}
