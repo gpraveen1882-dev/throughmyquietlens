@@ -161,3 +161,40 @@ footer { padding: 50px 0 28px; }
   font-size: .92rem;
   line-height: 1.6;
 }
+
+
+/* Article title sizing refinement */
+.article-head {
+  padding: 58px 0 38px;
+}
+.article-head h1 {
+  font-size: clamp(2.35rem, 4.6vw, 4.35rem);
+  line-height: 1.04;
+  letter-spacing: -.035em;
+  max-width: 900px;
+  margin: 12px 0 20px;
+}
+.article-head .deck {
+  font-size: 1.08rem;
+  line-height: 1.55;
+}
+@media (max-width: 800px) {
+  .article-head {
+    padding: 42px 0 30px;
+  }
+  .article-head h1 {
+    font-size: clamp(2.1rem, 10.5vw, 3.25rem);
+    line-height: 1.02;
+    letter-spacing: -.03em;
+    margin: 10px 0 18px;
+  }
+  .article-head .deck {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+@media (max-width: 420px) {
+  .article-head h1 {
+    font-size: clamp(1.95rem, 10vw, 2.7rem);
+  }
+}
