@@ -1,0 +1,15 @@
+[
+  {
+    "slug":"power-not-space",
+    "title":"Why Power, Not Space, Is Becoming the Constraint",
+    "description":"A field note on the shift from location-first to power-first data-centre development.",
+    "date":"2026-05-01",
+    "readingTime":"6 min read",
+    "body":[
+      "Data-centre conversations once began with land, connectivity and proximity to customers. Increasingly, they begin with a more basic question: where is the power?",
+      "AI infrastructure is intensifying a constraint the industry already understood. A suitable building is not useful without timely, reliable and scalable electricity.",
+      "This changes more than site selection. It changes partnerships, development timelines, commercial risk and the geography of future capacity.",
+      "DC Decoded follows these shifts without pretending that a complex infrastructure system can be reduced to a headline."
+    ]
+  }
+]
