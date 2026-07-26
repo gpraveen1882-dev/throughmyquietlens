@@ -1,0 +1,17 @@
+EDITORIAL TITLE HIERARCHY FIX
+
+This changes the article header from one oversized title into:
+
+Beyond Networking
+What 20+ Teams and 100+ People Taught Me
+
+The first line is the title. The second becomes a smaller editorial subtitle.
+The description, metadata and article body then follow with less vertical space.
+
+Upload:
+1. Extract this ZIP.
+2. Copy all folders into your local throughmyquietlens repository.
+3. Replace existing files when prompted.
+4. In GitHub Desktop use summary:
+   Refine article title hierarchy
+5. Commit to main and Push origin.

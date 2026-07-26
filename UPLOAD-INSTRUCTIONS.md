@@ -1,36 +1,22 @@
-# Substack Publishing Pack
+# Final Substack migration package
 
-This pack adds 6 full Substack essays and 8 full DC Decoded articles.
+This package contains the complete website source and built `dist` folder.
 
-## Upload to GitHub
+The supplied Substack export has been reconciled:
 
-Upload the contents of this ZIP to the root of your `throughmyquietlens` repository and allow GitHub to replace files with the same names.
+- 14 published articles transferred
+- 6 tutorial/draft/blank/duplicate exports excluded
+- 0 published Substack articles remaining
 
-The key changed files are:
+It also includes the refined article-title hierarchy for **Beyond Networking**.
 
-- `content/essays.json`
-- `content/dcdecoded.json`
-- `scripts/build.mjs`
-- `public/styles.css`
-- rebuilt `dist/`
+## Upload with GitHub Desktop
 
-Then commit the changes. Cloudflare should redeploy automatically.
+1. Extract this ZIP.
+2. Copy all files and folders into your local `throughmyquietlens` repository.
+3. Choose **Replace** when prompted.
+4. In GitHub Desktop, use the summary: `Complete Substack migration and refine article titles`
+5. Commit to `main`.
+6. Click **Push origin**.
 
-## Verification
-
-> throughmyquietlens@1.0.0 build
-> node scripts/build.mjs
-
-Built 25 files in /mnt/data/tml_substack_publish_pack/dist
-> throughmyquietlens@1.0.0 check
-> node scripts/check.mjs
-
-Checks passed: 22 HTML pages plus core assets.
-
-## Notes
-
-- Full article bodies were preserved from the Substack export.
-- Substack subscribe/share boilerplate was removed.
-- The duplicate Equality or Equity export was consolidated.
-- Blank export files and the Substack editor tutorial draft were excluded.
-- Original publication dates were not present in the individual exported HTML files, so the site displays “Originally published on Substack” rather than inventing dates.
+See `SUBSTACK-MIGRATION-AUDIT.md` for the complete reconciliation.
