@@ -16,7 +16,7 @@ for p in root.rglob('*.html'):
 
 articles=[
 {
-'slug':'anderson-gave-me-a-village','title':'Anderson Gave Me a Village','subtitle':'I came expecting to learn business. What stayed with me was the confidence that came from finding a community where I felt accepted, challenged and encouraged to grow.','read':'5 min read','date':'July 2026','tags':['Belonging','Community','UCLA Anderson'],
+'slug':'anderson-gave-me-a-village','title':'Anderson Gave Me a Village','subtitle':'I came expecting to learn business. What stayed with me was the confidence that came from finding a community where I felt accepted, challenged and encouraged to grow.','read':'2 min read','date':'July 2026','tags':['Belonging','Community','UCLA Anderson'],
 'body':[
 ('p','When I joined Anderson, I came expecting to learn business.'),('p','Strategy. Finance. Leadership.'),('p','I learned all of those things.'),('p',"But when I think about my time at Anderson today, those aren't the first things that come to mind."),
 ('p','I remember Beach Day. There were around 140 of us meeting for the first time. I probably spoke to twenty people. On the drive home, I remember wondering whether I would ever find my place there. I was naturally quiet, new to the U.S., and stepping into a completely unfamiliar environment.'),
@@ -34,7 +34,7 @@ articles=[
 ('p','It was the confidence that comes from finding a community where I felt accepted, challenged and encouraged to grow.')]
 },
 {
-'slug':'the-biggest-lessons-werent-always-in-the-classroom','title':"The Biggest Lessons Weren't Always in the Classroom",'subtitle':'Moving from Singapore to California reminded me that the same business problem can be approached through a completely different path.','read':'4 min read','date':'June 2026','tags':['Curiosity','Global Experience','Learning'],
+'slug':'the-biggest-lessons-werent-always-in-the-classroom','title':"The Biggest Lessons Weren't Always in the Classroom",'subtitle':'Moving from Singapore to California reminded me that the same business problem can be approached through a completely different path.','read':'2 min read','date':'June 2026','tags':['Curiosity','Global Experience','Learning'],
 'body':[
 ('p','Three years ago, I left Singapore thinking I had a good understanding of how business worked.'),
 ('p',"If I'm honest, I also arrived in California believing that the experience I'd gained over more than a decade in Singapore would translate naturally. Coming from a very competitive market, I expected to bring a different perspective—and I did."),
@@ -51,7 +51,7 @@ articles=[
 ('p','They reminded me to stay curious. There is always something to learn.')]
 },
 {
-'slug':'the-most-unexpected-part-of-my-mba','title':'The Most Unexpected Part of My MBA','subtitle':'A spreadsheet, a framework and a dashboard helped me see that the same skills used to grow a company can help an organisation serve more people.','read':'5 min read','date':'June 2026','tags':['Social Impact','Purpose','UCLA Anderson'],
+'slug':'the-most-unexpected-part-of-my-mba','title':'The Most Unexpected Part of My MBA','subtitle':'A spreadsheet, a framework and a dashboard helped me see that the same skills used to grow a company can help an organisation serve more people.','read':'2 min read','date':'June 2026','tags':['Social Impact','Purpose','UCLA Anderson'],
 'body':[
 ('p',"Can a spreadsheet, a framework or a dashboard change someone's life?"),('p','A few months earlier, I probably would not have asked that question.'),
 ('p','Like most people in business, I have spent much of my career focused on customers, operations, revenue, projects and teams. Success was usually measured through business outcomes.'),
@@ -69,7 +69,7 @@ articles=[
 ('p',"I'm not sure where this will lead."),('p',"But I'm glad UCLA introduced me to that possibility.")]
 },
 {
-'slug':'the-degree-was-the-destination','title':'The Degree Was the Destination. The Friendships Were the Surprise.','subtitle':'You go to school expecting to learn from professors. Some of the biggest lessons come from the people sitting next to you.','read':'3 min read','date':'June 2026','tags':['Friendship','EMBA','The Outliers'],
+'slug':'the-degree-was-the-destination','title':'The Degree Was the Destination. The Friendships Were the Surprise.','subtitle':'You go to school expecting to learn from professors. Some of the biggest lessons come from the people sitting next to you.','read':'1 min read','date':'June 2026','tags':['Friendship','EMBA','The Outliers'],
 'body':[
 ('p','I know now why school is fun.'),('p',"It doesn't matter whether you're four or forty."),
 ('p','You go there expecting to learn from professors. Instead, some of the biggest lessons come from the people sitting next to you.'),
