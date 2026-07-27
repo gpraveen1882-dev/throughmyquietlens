@@ -48,6 +48,6 @@ After running `npm run build`, open `dist/index.html`, or serve the directory wi
 
 ## Email subscriptions (Buttondown)
 
-The site now uses a Buttondown email form and no longer generates or links to RSS.
+The site now uses a Buttondown email subscription form throughout.
 The Buttondown publication username is set in `content/site.json` as `buttondownUsername`.
 It currently uses `throughmyquietlens`. If your Buttondown username differs, replace that value and run `npm run build`.
