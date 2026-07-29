@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Celebrate 2026 Drive Time — Peer-nominated, peer-interviewed stories from UCLA Anderson's EMBA & FEMBA Class of 2026">
+  <title>Celebrate 2026 · Drive Time | UCLA Anderson</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav-logo">Celebrate <span>2026</span> · Drive Time</a>
+  <div class="nav-search">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="search" id="searchInput" placeholder="Search guests, companies, hosts…" oninput="applyFilters()">
+  </div>
+  <span class="nav-count" id="navCount"></span>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-brand">
+    <p class="hero-eyebrow">UCLA Anderson &middot; EMBA &amp; FEMBA &middot; Season 1 &middot; 2026</p>
+    <h1 class="hero-title">Drive Time<em>Celebrate 2026</em></h1>
+    <p class="hero-subtitle">Stories from UCLA Anderson&#8217;s EMBA &amp; FEMBA Class of 2026</p>
+    <p class="hero-tagline">Peer-nominated. Peer-interviewed. No scripts&#8212;just real stories.</p>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-number">28</div><div class="stat-label">Episodes</div></div>
+    <div><div class="stat-number">29</div><div class="stat-label">Guests</div></div>
+    <div><div class="stat-number">3</div><div class="stat-label">Programs</div></div>
+    <div><div class="stat-number">6</div><div class="stat-label">Hosts</div></div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+
+    <!-- FILTERS -->
+    <div class="filters-section">
+      <div class="filters-row">
+        <span class="filter-label">Program:</span>
+        <button class="filter-btn active" data-type="program" data-val="all"     onclick="setFilter('program','all',this)">All</button>
+        <button class="filter-btn"        data-type="program" data-val="EMBA"    onclick="setFilter('program','EMBA',this)">EMBA</button>
+        <button class="filter-btn"        data-type="program" data-val="FEMBA"   onclick="setFilter('program','FEMBA',this)">FEMBA</button>
+        <button class="filter-btn"        data-type="program" data-val="UCLA-NUS" onclick="setFilter('program','UCLA-NUS',this)">UCLA-NUS</button>
+        <div class="filter-sep"></div>
+        <span class="filter-label">Status:</span>
+        <button class="filter-btn active" data-type="status"  data-val="all"        onclick="setFilter('status','all',this)">All</button>
+        <button class="filter-btn"        data-type="status"  data-val="released"   onclick="setFilter('status','released',this)">Released</button>
+        <button class="filter-btn"        data-type="status"  data-val="upcoming"   onclick="setFilter('status','upcoming',this)">Up Next</button>
+        <button class="filter-btn"        data-type="status"  data-val="production" onclick="setFilter('status','production',this)">In Production</button>
+        <button class="filter-btn"        data-type="status"  data-val="scheduled"  onclick="setFilter('status','scheduled',this)">Scheduled</button>
+      </div>
+    </div>
+
+    <!-- GUEST PROFILES -->
+    <div class="section-header">
+      <h2 class="section-title">Guest Profiles</h2>
+      <p class="section-sub">Headshots, bios, and episode links for every guest</p>
+    </div>
+    <div class="guests-grid" id="guestsGrid"></div>
+    <p class="no-results hidden" id="noResults">No guests match your search.</p>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p>
+    <strong>Celebrate 2026 · Drive Time</strong><br>
+    UCLA Anderson School of Management · EMBA &amp; FEMBA Class of 2026<br>
+    Season 1 · 28 Episodes · 29 Guests<br>
+    <span style="font-size:.72rem">Peer-nominated. Peer-interviewed. No scripts—just real stories.</span>
+  </p>
+</footer>
+
+<script src="data.js"></script>
+<script>
+// ── helpers ────────────────────────────────────────────
+function initials(name) {
+  return name.split(/[\s&]+/).filter(Boolean).map(w => w[0]).slice(0, 2).join('').toUpperCase();
+}
+function avatarColor(name) {
+  const palette = ['#003B5C','#1d4ed8','#7c3aed','#0f766e','#b45309','#be185d','#0369a1','#15803d','#9f1239'];
+  let h = 0; for (const c of name) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  return palette[h % palette.length];
+}
+function statusLabel(s) {
+  return { released:'Released', upcoming:'Up Next', production:'In Production', scheduled:'Scheduled' }[s] || s;
+}
+function statusClass(s) {
+  return { released:'badge-released', upcoming:'badge-upcoming', production:'badge-production', scheduled:'badge-scheduled' }[s] || '';
+}
+
+// ── TOC row ────────────────────────────────────────────
+function tocRow(g) {
+  const ep = g.ep ? `EP.${g.ep}` : 'TBD';
+  const prog = `<span class="badge badge-${g.program.toLowerCase()}">${g.program}</span>`;
+  const stat = `<span class="badge ${statusClass(g.status)}">${statusLabel(g.status)}</span>`;
+  const rel  = g.release !== 'TBD' ? g.release : `<span style="color:var(--text-muted)">TBD</span>`;
+  const epLnk = g.episode_url
+    ? `<a href="${g.episode_url}" target="_blank" class="alink alink-episode">▶ Episode</a>`
+    : `<span class="alink alink-pending">▶ coming soon</span>`;
+  const sbLnk = g.soundbite_url
+    ? `<a href="${g.soundbite_url}" target="_blank" class="alink alink-soundbite">✦ Soundbites</a>` : '';
+  const liLnk = g.linkedin
+    ? `<a href="${g.linkedin}" target="_blank" class="alink alink-linkedin">in</a>` : '';
+  const search = [g.name, g.title, g.company, g.host].join(' ').toLowerCase();
+  return `<tr class="toc-row" data-program="${g.program}" data-status="${g.status}" data-search="${search}">
+    <td class="ep-num">${ep}</td>
+    <td><a href="#${g.id}" class="guest-link">${g.name}</a></td>
+    <td><div class="title-co">${[g.title, g.company].filter(Boolean).join(' · ')}</div></td>
+    <td>${prog}</td>
+    <td class="host-cell">${g.host}</td>
+    <td class="release-cell">${rel}</td>
+    <td>${stat}</td>
+    <td><div class="action-links">${epLnk}${sbLnk}${liLnk}</div></td>
+  </tr>`;
+}
+
+// ── guest card ─────────────────────────────────────────
+function guestCard(g) {
+  const ep = g.ep ? `EP. ${g.ep}` : 'TBD';
+  const prog = `<span class="badge badge-${g.program.toLowerCase()}">${g.program} '${String(g.year).slice(-2)}</span>`;
+  const stat = `<span class="badge ${statusClass(g.status)}">${statusLabel(g.status)}</span>`;
+  const titleCo = [g.title, g.company].filter(Boolean).join(' · ');
+  const bio = g.bio
+    ? `<p class="card-bio">${g.bio}</p>`
+    : `<p class="card-bio placeholder">Bio coming soon.</p>`;
+
+  // guest avatar(s)
+  const gColor = avatarColor(g.name);
+  let gAv;
+  if (g.duo) {
+    const av1Content = g.duo.g1.headshot
+      ? `<img src="${g.duo.g1.headshot}" alt="${g.duo.g1.name}">`
+      : initials(g.duo.g1.name);
+    const av2Content = g.duo.g2.headshot
+      ? `<img src="${g.duo.g2.headshot}" alt="${g.duo.g2.name}">`
+      : initials(g.duo.g2.name);
+    gAv = `<div class="duo-avatars">
+      <div class="avatar-lg" style="background:${avatarColor(g.duo.g1.name)}">${av1Content}</div>
+      <div class="avatar-lg" style="background:${avatarColor(g.duo.g2.name)}">${av2Content}</div>
+    </div>`;
+  } else {
+    const gAvContent = g.headshot
+      ? `<img src="${g.headshot}" alt="${g.name}">`
+      : initials(g.name.split('&')[0].trim());
+    gAv = `<div class="avatar-lg" style="background:${gColor}">${gAvContent}</div>`;
+  }
+
+  // host avatar
+  const hColor = avatarColor(g.host);
+  const hostObj = HOSTS.find(h => h.name === g.host);
+  const hAvContent = hostObj && hostObj.headshot
+    ? `<img src="${hostObj.headshot}" alt="${g.host}">`
+    : initials(g.host);
+  const hAv = `<div class="avatar-sm" style="background:${hColor}">${hAvContent}</div>`;
+
+  // footer links
+  const epFl = g.episode_url
+    ? `<a href="${g.episode_url}" target="_blank" class="flink flink-episode">▶ Listen</a>`
+    : `<span class="flink-pending">Episode link coming soon</span>`;
+  const sbFl = g.soundbite_url
+    ? `<a href="${g.soundbite_url}" target="_blank" class="flink flink-soundbite">✦ Soundbites</a>` : '';
+
+  // duo vs single content + links
+  let contentInner, footerLinks;
+  if (g.duo) {
+    const d = g.duo;
+    const bio1 = d.g1.bio ? `<p class="card-bio">${d.g1.bio}</p>` : `<p class="card-bio placeholder">Bio coming soon.</p>`;
+    const bio2 = d.g2.bio ? `<p class="card-bio">${d.g2.bio}</p>` : `<p class="card-bio placeholder">Bio coming soon.</p>`;
+    const li1 = d.g1.linkedin ? `<a href="${d.g1.linkedin}" target="_blank" class="flink flink-linkedin">LinkedIn ↗ ${d.g1.name.split(' ')[0]}</a>` : '';
+    const li2 = d.g2.linkedin ? `<a href="${d.g2.linkedin}" target="_blank" class="flink flink-linkedin">LinkedIn ↗ ${d.g2.name.split(' ')[0]}</a>` : '';
+    contentInner = `
+        <div class="card-meta"><span class="ep-tag">${ep}</span>${prog}${stat}</div>
+        <div class="duo-guest">
+          <div class="duo-person">
+            <h2 class="card-name card-name-sm">${d.g1.name}</h2>
+            <p class="card-titleco">${[d.g1.title, d.g1.company].filter(Boolean).join(' · ')}</p>
+            ${bio1}
+          </div>
+          <div class="duo-divider"></div>
+          <div class="duo-person">
+            <h2 class="card-name card-name-sm">${d.g2.name}</h2>
+            <p class="card-titleco">${[d.g2.title, d.g2.company].filter(Boolean).join(' · ')}</p>
+            ${bio2}
+          </div>
+        </div>`;
+    footerLinks = `${epFl}${sbFl}${li1}${li2}`;
+  } else {
+    const liFl = g.linkedin ? `<a href="${g.linkedin}" target="_blank" class="flink flink-linkedin">LinkedIn</a>` : '';
+    contentInner = `
+        <div class="card-meta"><span class="ep-tag">${ep}</span>${prog}${stat}</div>
+        <h2 class="card-name">${g.name}</h2>
+        ${titleCo ? `<p class="card-titleco">${titleCo}</p>` : ''}
+        ${bio}`;
+    footerLinks = `${epFl}${sbFl}${liFl}`;
+  }
+
+  const search = [g.name, g.title, g.company, g.host].join(' ').toLowerCase();
+  return `<article id="${g.id}" class="guest-card" data-program="${g.program}" data-status="${g.status}" data-search="${search}">
+    <div class="card-body">
+      <div class="photo-col">
+        ${gAv}
+        <div class="host-pip">
+          ${hAv}
+          <span class="host-label">Host<br>${g.host.split(' ')[0]}</span>
+        </div>
+      </div>
+      <div class="content-col">${contentInner}
+      </div>
+    </div>
+    <div class="card-footer">
+      ${footerLinks}
+      <span class="footer-host">Interviewed by <strong>${hostObj && hostObj.linkedin ? `<a href="${hostObj.linkedin}" target="_blank" style="color:inherit;text-decoration:underline">${g.host}</a>` : g.host}</strong></span>
+    </div>
+  </article>`;
+}
+
+// ── render ─────────────────────────────────────────────
+function render() {
+  document.getElementById('guestsGrid').innerHTML = GUESTS.map(guestCard).join('');
+  applyFilters();
+}
+
+// ── filter/search ──────────────────────────────────────
+const filters = { program: 'all', status: 'all' };
+
+function applyFilters() {
+  const q = (document.getElementById('searchInput').value || '').toLowerCase().trim();
+  let count = 0;
+  const match = el => {
+    const p = filters.program === 'all' || el.dataset.program === filters.program;
+    const s = filters.status  === 'all' || el.dataset.status  === filters.status;
+    const m = !q || el.dataset.search.includes(q);
+    return p && s && m;
+  };
+  document.querySelectorAll('.guest-card').forEach(c => {
+    const v = match(c); c.classList.toggle('hidden', !v); if (v) count++;
+  });
+  const total = GUESTS.length;
+  document.getElementById('navCount').textContent =
+    count === total ? `${total} guests` : `${count} shown`;
+  document.getElementById('noResults').classList.toggle('hidden', count > 0);
+}
+
+function setFilter(type, val, btn) {
+  filters[type] = val;
+  document.querySelectorAll(`[data-type="${type}"]`).forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+// ── init ───────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', render);
+</script>
+</body>
+</html>
