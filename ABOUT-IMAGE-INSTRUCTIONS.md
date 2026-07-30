@@ -6,6 +6,7 @@ Replace the placeholder JPEGs in `public/images/about/` while keeping these exac
 
 - `praveen-portrait.jpg` — vertical portrait, ideally 4:5
 - `journey-chennai.jpg`
+- `journey-godrej.jpg`
 - `journey-singapore.jpg`
 - `journey-united-states.jpg`
 - `journey-return.jpg`
