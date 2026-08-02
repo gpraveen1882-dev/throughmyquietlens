@@ -494,3 +494,5 @@ footer { padding: 50px 0 28px; }
 .img-carousel-dot{width:7px;height:7px;border-radius:50%;background:var(--line);border:none;padding:0;cursor:pointer;transition:background .2s}
 .img-carousel-dot.active{background:var(--accent)}
 @media (prefers-reduced-motion: reduce){.img-carousel-track{scroll-behavior:auto}}
+.home-conversations-note{margin-top:10px;font-size:.9rem}
+.home-conversations-note a{color:var(--muted)}
