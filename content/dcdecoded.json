@@ -3,7 +3,7 @@
     "slug": "3-trillion-in-data-centers-by-2030",
     "title": "$3 Trillion in Data Centers by 2030",
     "description": "A plain-language guide to why data centres are measured in power, what a gigawatt means and where the enormous investment requirement comes from.",
-    "date": null,
+    "date": "2026-03-27",
     "readingTime": "6 min read",
     "tags": [
       "Data Centres",
@@ -18,7 +18,7 @@
     "slug": "why-power-not-space-is-the-only-thing-that-matters",
     "title": "Why Power, Not Space, Is the Only Thing That Matters",
     "description": "The old real-estate mental model for data centres is breaking down as rack density and reliable power become the defining constraints.",
-    "date": null,
+    "date": "2026-03-29",
     "readingTime": "5 min read",
     "tags": [
       "Data Centres",
@@ -33,7 +33,7 @@
     "slug": "helium-the-invisible-chokepoint",
     "title": "Helium: The Invisible Chokepoint Behind AI",
     "description": "A closed strait, a disrupted helium supply and the hidden dependency connecting geopolitics, semiconductors and AI infrastructure.",
-    "date": null,
+    "date": "2026-03-30",
     "readingTime": "6 min read",
     "tags": [
       "Semiconductors",
@@ -48,7 +48,7 @@
     "slug": "one-race-four-winners",
     "title": "One Race, Four Winners",
     "description": "The AI infrastructure buildout is not a single market. It is a chain of value pools, and different companies win at different stages.",
-    "date": null,
+    "date": "2026-04-01",
     "readingTime": "12 min read",
     "tags": [
       "AI Infrastructure",
@@ -63,7 +63,7 @@
     "slug": "training-vs-inference",
     "title": "Training vs. Inference: The Compute Shift That Matters",
     "description": "Why the centre of gravity in AI infrastructure may move from building models to running them at scale.",
-    "date": null,
+    "date": "2026-04-10",
     "readingTime": "3 min read",
     "tags": [
       "AI",
@@ -78,7 +78,7 @@
     "slug": "why-the-grid-cant-keep-up",
     "title": "Why the Grid Can’t Keep Up",
     "description": "The energy may exist, but delivering it reliably is a different challenge—especially as data-centre demand accelerates.",
-    "date": null,
+    "date": "2026-04-19",
     "readingTime": "7 min read",
     "tags": [
       "Grid",
@@ -93,7 +93,7 @@
     "slug": "from-location-first-to-power-first",
     "title": "From Location-First to Power-First",
     "description": "What changes when data-centre developers stop bringing power to computing and begin bringing computing to stranded energy.",
-    "date": null,
+    "date": "2026-04-28",
     "readingTime": "5 min read",
     "tags": [
       "Site Selection",
@@ -108,7 +108,7 @@
     "slug": "follow-the-cash",
     "title": "Follow the Cash",
     "description": "A lesson from evaluating real businesses: revenue tells a story, but free cash flow reveals whether the business is truly healthy.",
-    "date": null,
+    "date": "2026-05-26",
     "readingTime": "4 min read",
     "tags": [
       "Business",
