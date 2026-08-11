@@ -40,7 +40,7 @@ const cleanLinkedInHtml = (html='') => {
 };
 const articleBody = (e) => groupImagesIntoCarousels(cleanLinkedInHtml(e.bodyHtml || (e.body || []).map(p=>`<p>${esc(p)}</p>`).join('')));
 const sourceNote = () => '';
-const tagHtml = (tags=[]) => `<div class="tags">${tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>`;
+const tagHtml = (tags=[]) => `<div class="tags">${tags.map(t=>`<span class="tag">#${esc(t.replace(/\s+/g,''))}</span>`).join('')}</div>`;
 
 function nav(active='') {
   const items = [
