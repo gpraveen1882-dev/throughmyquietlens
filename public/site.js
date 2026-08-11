@@ -29,3 +29,21 @@ document.querySelectorAll('.img-carousel').forEach((car) => {
   }, { root: track, threshold: 0.6 });
   slides.forEach((s) => io.observe(s));
 });
+
+// Library search filter
+const librarySearch = document.getElementById('library-search');
+const libraryAll = document.getElementById('library-all');
+const libraryEmpty = document.getElementById('library-search-empty');
+if (librarySearch && libraryAll) {
+  const items = [...libraryAll.querySelectorAll('article')];
+  librarySearch.addEventListener('input', () => {
+    const q = librarySearch.value.trim().toLowerCase();
+    let visible = 0;
+    items.forEach((item) => {
+      const match = !q || (item.dataset.search || '').includes(q);
+      item.hidden = !match;
+      if (match) visible++;
+    });
+    if (libraryEmpty) libraryEmpty.hidden = visible !== 0;
+  });
+}
