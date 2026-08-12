@@ -105,6 +105,7 @@ header { border-bottom: 1px solid var(--line); background: rgba(247,244,238,.94)
 footer { padding: 50px 0 28px; }
 .footer-grid { display: grid; grid-template-columns: 1fr auto; gap: 30px; align-items: start; }
 .footer-brand { font-family: Georgia, "Times New Roman", serif; font-size: 1.4rem; }
+.footer-logo { height: 40px; width: auto; display: block; }
 .footer-links { display: flex; flex-wrap: wrap; gap: 16px 24px; justify-content: end; font-size: .9rem; }
 .copyright { margin-top: 42px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: .82rem; }
 
