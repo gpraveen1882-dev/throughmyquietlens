@@ -197,9 +197,6 @@ footer { padding: 50px 0 28px; }
   }
 }
 @media (max-width: 420px) {
-  .article-head h1 {
-    font-size: clamp(1.95rem, 10vw, 2.7rem);
-  }
 }
 
 /* Refined editorial article hierarchy */
