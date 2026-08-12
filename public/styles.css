@@ -244,27 +244,27 @@ footer { padding: 50px 0 28px; }
   .article-head h1 {
 @media (max-width: 800px) {
   .article-head {
-    padding: 28px 0 18px;
+    padding: 20px 0 14px;
   }
   .article-head h1 {
-    font-size: clamp(1.9rem, 8vw, 2.6rem);
-    line-height: 1.02;
-    margin-bottom: 6px;
+    font-size: clamp(1.7rem, 7vw, 2.3rem);
+    line-height: 1.05;
+    margin-bottom: 5px;
   }
   .article-subtitle {
-    font-size: clamp(1.15rem, 5vw, 1.5rem);
-    line-height: 1.18;
-    margin-bottom: 10px;
+    font-size: clamp(1.05rem, 4.5vw, 1.35rem);
+    line-height: 1.16;
+    margin-bottom: 8px;
   }
   .article-head .deck {
-    font-size: .92rem;
-    line-height: 1.42;
+    font-size: .9rem;
+    line-height: 1.35;
   }
   .article-head .meta {
-    margin-top: 10px;
+    margin-top: 8px;
   }
   .article-head .tags {
-    margin-top: 8px;
+    margin-top: 6px;
   }
 }
 
