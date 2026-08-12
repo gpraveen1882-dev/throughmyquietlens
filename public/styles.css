@@ -36,7 +36,8 @@ main { flex: 1; }
 
 header { border-bottom: 1px solid var(--line); background: rgba(247,244,238,.94); position: sticky; top: 0; z-index: 20; backdrop-filter: blur(12px); }
 .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-.brand { font-family: Georgia, "Times New Roman", serif; font-size: 1.2rem; letter-spacing: .02em; }
+.brand { font-family: Georgia, "Times New Roman", serif; font-size: 1.2rem; letter-spacing: .02em; display: inline-flex; align-items: center; }
+.brand-logo { height: 34px; width: auto; display: block; }
 .nav-links { display: flex; gap: 24px; align-items: center; font-size: .93rem; }
 .nav-links a[aria-current="page"] { color: var(--accent); }
 .menu-button { display: none; border: 0; background: transparent; padding: 8px; }
@@ -110,6 +111,7 @@ footer { padding: 50px 0 28px; }
 @media (max-width: 800px) {
   .nav { min-height: 66px; }
   .menu-button { display: block; }
+  .brand-logo { height: 26px; }
   .nav-links { display: none; position: absolute; left: 0; right: 0; top: 66px; background: var(--paper); border-bottom: 1px solid var(--line); padding: 18px 20px 24px; flex-direction: column; align-items: flex-start; }
   .nav-links.open { display: flex; }
   .hero { min-height: auto; padding: 72px 0; }

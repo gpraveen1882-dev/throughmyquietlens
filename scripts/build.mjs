@@ -46,7 +46,7 @@ function nav(active='') {
   const items = [
     ['DC Decoded','/dc-decoded/','dc'],['Essays','/essays/','essays'],['Working Principles','/principles/','principles'],['Library','/library/','library'],['About','/about/','about'],['Subscribe','/subscribe/','subscribe']
   ];
-  return `<header><div class="container nav"><a class="brand" href="/">Through My Quiet Lens</a><button class="menu-button" aria-label="Open menu" aria-expanded="false">Menu</button><nav class="nav-links" aria-label="Primary">${items.map(([label,url,key])=>`<a href="${url}"${active===key?' aria-current="page"':''}>${label}</a>`).join('')}</nav></div></header>`;
+  return `<header><div class="container nav"><a class="brand" href="/"><img src="/images/logo-quiet-lens.png" alt="Through My Quiet Lens" class="brand-logo"></a><button class="menu-button" aria-label="Open menu" aria-expanded="false">Menu</button><nav class="nav-links" aria-label="Primary">${items.map(([label,url,key])=>`<a href="${url}"${active===key?' aria-current="page"':''}>${label}</a>`).join('')}</nav></div></header>`;
 }
 
 function footer() {
