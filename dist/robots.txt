@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://throughmyquietlens.com/sitemap.xml

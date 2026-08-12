@@ -242,11 +242,6 @@ footer { padding: 50px 0 28px; }
     padding: 36px 0 26px;
   }
   .article-head h1 {
-@media (max-width: 800px) {
-  .article-head {
-    padding: 36px 0 26px;
-  }
-  .article-head h1 {
     font-size: clamp(2.15rem, 9.2vw, 3rem);
     line-height: 1.02;
     margin-bottom: 8px;
