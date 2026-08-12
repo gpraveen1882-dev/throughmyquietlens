@@ -242,17 +242,29 @@ footer { padding: 50px 0 28px; }
     padding: 36px 0 26px;
   }
   .article-head h1 {
-    font-size: clamp(2.15rem, 9.2vw, 3rem);
+@media (max-width: 800px) {
+  .article-head {
+    padding: 28px 0 18px;
+  }
+  .article-head h1 {
+    font-size: clamp(1.9rem, 8vw, 2.6rem);
     line-height: 1.02;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
   .article-subtitle {
-    font-size: clamp(1.32rem, 6vw, 1.75rem);
-    line-height: 1.2;
-    margin-bottom: 16px;
+    font-size: clamp(1.15rem, 5vw, 1.5rem);
+    line-height: 1.18;
+    margin-bottom: 10px;
   }
   .article-head .deck {
-    font-size: .98rem;
+    font-size: .92rem;
+    line-height: 1.42;
+  }
+  .article-head .meta {
+    margin-top: 10px;
+  }
+  .article-head .tags {
+    margin-top: 8px;
   }
 }
 
