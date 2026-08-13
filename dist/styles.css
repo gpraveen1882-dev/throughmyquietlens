@@ -465,3 +465,39 @@ footer { padding: 50px 0 28px; }
     max-width: 100%;
   }
 }
+/* Fix Quiet Lens mobile layout without affecting the About page */
+
+.journey-list .journey-number {
+  display: block;
+  position: static;
+  top: auto;
+  left: auto;
+  transform: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font-size: 1.35rem;
+  z-index: auto;
+}
+
+@media (max-width: 800px) {
+  .journey-list .journey-item {
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .journey-list .journey-number {
+    display: block;
+    position: static;
+    top: auto;
+    left: auto;
+    transform: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+  }
+
+  .journey-list .journey-item h2 {
+    font-size: 1.85rem;
+  }
+}
