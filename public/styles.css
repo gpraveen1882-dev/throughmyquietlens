@@ -91,11 +91,22 @@ header { border-bottom: 1px solid var(--line); background: rgba(247,244,238,.94)
 .article p:first-child::first-letter { float: left; font-size: 4.2rem; line-height: .9; padding-right: 9px; padding-top: 8px; color: var(--accent); }
 .article-end { margin-top: 56px; padding-top: 30px; border-top: 1px solid var(--line); color: var(--muted); }
 
-.principle-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
-.principle { background: var(--paper); padding: 34px; min-height: 230px; }
-.principle .num { color: var(--accent); font-weight: 700; font-size: .8rem; }
-.principle h2 { font-family: Georgia, "Times New Roman", serif; font-size: 2rem; font-weight: 500; line-height: 1.15; margin: 16px 0; }
-.principle p { color: var(--muted); }
+.principle-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+    background: transparent;
+    align-items: stretch;
+}
+
+.principle {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 34px;
+    min-height: 320px;
+}
 
 .about-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 70px; }
 .about-grid aside { color: var(--muted); }
