@@ -71,11 +71,20 @@ const startHere = [
   findEssay('finding-my-voice'),
   findEssay('ai-extend-my-thinking-or-avoid-it')
 ].filter(Boolean);
-const homeLatest = [...essays, ...dc.map(e=>({...e, _cat:'dc-decoded'}))]
-  .filter(e=>e.date)
-  .sort((a,b)=>String(b.date).localeCompare(String(a.date)))
-  .slice(0,3);
-const homeLatestUrl = e => e._cat==='dc-decoded' ? `/dc-decoded/${e.slug}/` : `/essays/${e.slug}/`;
+const homeLatest = [
+  ...essays.map(e => ({ ...e, _cat: 'essays' })),
+  ...principles.map(e => ({ ...e, _cat: 'principles' })),
+  ...dc.map(e => ({ ...e, _cat: 'dc-decoded' }))
+]
+  .filter(e => e.date)
+  .sort((a, b) => String(b.date).localeCompare(String(a.date)))
+  .slice(0, 3);
+
+const homeLatestUrl = e => {
+  if (e._cat === 'dc-decoded') return `/dc-decoded/${e.slug}/`;
+  if (e._cat === 'principles') return `/principles/${e.slug}/`;
+  return `/essays/${e.slug}/`;
+};
 const home = `<section class="home-hero"><div class="container home-hero-inner"><p class="home-thankyou">Thank you for choosing to pause &amp; explore instead of scroll.</p><p class="home-deck">Through My Quiet Lens is a place where I bring together thoughts and experiences that stayed with me long enough to write about.</p></div></section>
 <section class="section home-recent"><div class="container"><p class="eyebrow">Recent Writing</p><div class="home-recent-list">${homeLatest.map(e=>`<article class="home-recent-item"><h2><a href="${homeLatestUrl(e)}">${esc(e.displayTitle || e.title)}</a></h2>${e.date?`<p class="pub-date home-recent-date">${prettyDate(e.date)}</p>`:''}<p>${esc(e.homeIntro || e.description)}</p><a class="read-link" href="${homeLatestUrl(e)}">Read →</a></article>`).join('')}</div><p class="home-explore-all"><a href="/library/">Explore all writing →</a></p><p class="home-explore-all home-conversations-note"><a href="/conversations/">I also host conversations, hear them here →</a></p></div></section>
 <section class="section home-more-about"><div class="container home-more-about-inner"><h2>A little more about me</h2><p>I started writing because some experiences stayed with me long after they happened. Writing helped me understand them better and sometimes notice something I had missed at the time.</p><p>Some of the places, people and experiences that influenced my writing are shared on the About page.</p><p class="home-poem-note">Most of what I write takes the form of essays and reflections. Occasionally, it may also become a poem.</p><a class="text-button" href="/about/">Read more about me →</a></div></section>
