@@ -34,7 +34,7 @@ main { flex: 1; }
 .skip-link { position: absolute; left: -999px; top: 8px; background: var(--ink); color: white; padding: 8px 12px; z-index: 50; }
 .skip-link:focus { left: 8px; }
 
-header { border-bottom: 1px solid var(--line); background: rgba(247,244,238,.94); position: sticky; top: 0; z-index: 20; backdrop-filter: blur(12px); }
+.site-shell > header { border-bottom: 1px solid var(--line); background: rgba(247,244,238,.94); position: sticky; top: 0; z-index: 20; backdrop-filter: blur(12px); }
 .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .brand { font-family: Georgia, "Times New Roman", serif; font-size: 1.2rem; letter-spacing: .02em; display: inline-flex; align-items: center; }
 .brand-logo { height: 46px; width: auto; display: block; }
