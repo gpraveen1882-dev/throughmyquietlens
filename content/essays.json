@@ -576,41 +576,57 @@
     "image": "/images/essays/holding-the-stretch.jpg"
   },
   {
-  "slug": "when-answers-become-easy",
-  "title": "When Answers Become Easy, What Happens to Thinking?",
-  "subtitle": "What friction used to force us to do.",
-  "description": "AI is making answers easier to get. I’m beginning to wonder what else the effort of getting to an answer was doing for us.",
-  "date": "2026-08-18",
-  "readingTime": "2 min read",
-  "tags": [
-    "AI",
-    "Judgment",
-    "Thinking",
-    "Leadership"
-  ],
-  "featured": false,
-  "source": "Original",
-  "collection": "Through My Quiet Lens",
-  "collectionOrder": 15,
-  "bodyHtml": "<p>I’ve been thinking about something as AI makes answers easier to get.</p><p>For most of my career, getting to an answer took effort.</p><p>You searched for information.<br>You spoke to people.<br>You compared views.<br>Sometimes you worked with incomplete information and had to make sense of it yourself.</p><p>That effort was not always efficient.</p><p>But I wonder if it was doing something else for us too.</p><p><strong>It forced us to think.</strong></p><p>Today, AI can give me analysis, alternatives and possible answers in seconds.</p><p>That is incredibly useful.</p><p>But when we remove so much of the effort involved in getting to an answer, do we also remove some of the thinking that used to happen along the way?</p><p>I’ve started noticing this even in my own use of AI.</p><p>An answer appears quickly. It sounds reasonable. And it is very easy to move on.</p><p>But perhaps that is exactly when I need to slow down.</p><p>Do I agree with it?</p><p>What is it missing?</p><p>Is this even the right question?</p><p>And more importantly, is this something worth doing in the first place?</p><p>We have spent years trying to make information easier to access.</p><p>AI may take that much further.</p><p>That is progress.</p><p>But maybe one of the things we will have to learn is how to preserve some of the thinking that friction used to force upon us.</p><p>Not because the old way was better.</p><p>But because judgment still needs to come from somewhere.</p>"
-},
-{
-  "slug": "participation-is-not-belonging",
-  "title": "Participation Is Not Belonging",
-  "subtitle": "What culture looks like when people feel safe enough to disagree.",
-  "description": "A reflection on participation, psychological safety, and what it really means to belong at work.",
-  "date": "2026-08-23",
-  "readingTime": "2 min read",
-  "tags": [
-    "Culture",
-    "Belonging",
-    "Psychological Safety",
-    "Leadership"
-  ],
-  "featured": false,
-  "source": "Original",
-  "collection": "Through My Quiet Lens",
-  "collectionOrder": 16,
-  "bodyHtml": "<p>I used to think team-building events were a sign of a strong culture.</p><p>I’m less sure now.</p><p>I have seen workplaces where the signs of community were everywhere.</p><p>And yet, people could still work in silos, stay guarded, and be careful about what they said.</p><p>I have also seen fully remote teams, spread across locations, work with remarkable trust and alignment.</p><p>That made me question something I had taken for granted.</p><p>Perhaps being together is not the same as belonging.</p><p>Offsites.</p><p>Celebrations.</p><p>Photographs on the wall.</p><p>Plenty of language about being “one team.”</p><p>People can participate in all of it.</p><p>But participation is not the same as belonging.</p><p>One test of belonging, at least for me, is much simpler:</p><p><strong>Can people speak honestly?</strong></p><p>Can someone say:</p><p>“I disagree.”</p><p>“I don’t think this will work.”</p><p>“The customer is telling us something different.”</p><p>And say it without worrying that speaking up will come back to hurt them?</p><p>Because silence can easily be mistaken for agreement.</p><p>Sometimes people are silent because they agree.</p><p>Sometimes they are silent because they have learned that disagreeing is not worth the risk.</p><p>That difference matters.</p><p>Not just for culture.</p><p>For the business too.</p><p>No one person sees everything.</p><p>The people closest to customers see things leadership may not.</p><p>The people executing the work see problems others may miss.</p><p>The whole point of having a team is to bring those views into the room before decisions are made.</p><p>Otherwise, you can have many people in an organization and still end up with only one person’s thinking.</p><p>That is why I have started looking at culture differently.</p><p>Not by how many people attend the offsite.</p><p>Not by how many photographs are on the wall.</p><p>But by what happens in the room when someone disagrees.</p><p>You can bring people together.</p><p>You can get them to participate.</p><p>But if they don’t feel safe enough to disagree, that is participation.</p><p><strong>Not belonging.</strong></p>"
-}
+    "slug": "when-answers-become-easy",
+    "title": "When Answers Become Easy, What Happens to Thinking?",
+    "subtitle": "What friction used to force us to do.",
+    "description": "AI is making answers easier to get. I’m beginning to wonder what else the effort of getting to an answer was doing for us.",
+    "date": "2026-08-18",
+    "readingTime": "2 min read",
+    "tags": [
+      "AI",
+      "Judgment",
+      "Thinking",
+      "Leadership"
+    ],
+    "featured": false,
+    "source": "Original",
+    "collection": "Through My Quiet Lens",
+    "collectionOrder": 15,
+    "bodyHtml": "<p>I’ve been thinking about something as AI makes answers easier to get.</p><p>For most of my career, getting to an answer took effort.</p><p>You searched for information.<br>You spoke to people.<br>You compared views.<br>Sometimes you worked with incomplete information and had to make sense of it yourself.</p><p>That effort was not always efficient.</p><p>But I wonder if it was doing something else for us too.</p><p><strong>It forced us to think.</strong></p><p>Today, AI can give me analysis, alternatives and possible answers in seconds.</p><p>That is incredibly useful.</p><p>But when we remove so much of the effort involved in getting to an answer, do we also remove some of the thinking that used to happen along the way?</p><p>I’ve started noticing this even in my own use of AI.</p><p>An answer appears quickly. It sounds reasonable. And it is very easy to move on.</p><p>But perhaps that is exactly when I need to slow down.</p><p>Do I agree with it?</p><p>What is it missing?</p><p>Is this even the right question?</p><p>And more importantly, is this something worth doing in the first place?</p><p>We have spent years trying to make information easier to access.</p><p>AI may take that much further.</p><p>That is progress.</p><p>But maybe one of the things we will have to learn is how to preserve some of the thinking that friction used to force upon us.</p><p>Not because the old way was better.</p><p>But because judgment still needs to come from somewhere.</p>"
+  },
+  {
+    "slug": "participation-is-not-belonging",
+    "title": "Participation Is Not Belonging",
+    "subtitle": "What culture looks like when people feel safe enough to disagree.",
+    "description": "A reflection on participation, psychological safety, and what it really means to belong at work.",
+    "date": "2026-08-23",
+    "readingTime": "2 min read",
+    "tags": [
+      "Culture",
+      "Belonging",
+      "Psychological Safety",
+      "Leadership"
+    ],
+    "featured": false,
+    "source": "Original",
+    "collection": "Through My Quiet Lens",
+    "collectionOrder": 16,
+    "bodyHtml": "<p>I used to think team-building events were a sign of a strong culture.</p><p>I’m less sure now.</p><p>I have seen workplaces where the signs of community were everywhere.</p><p>And yet, people could still work in silos, stay guarded, and be careful about what they said.</p><p>I have also seen fully remote teams, spread across locations, work with remarkable trust and alignment.</p><p>That made me question something I had taken for granted.</p><p>Perhaps being together is not the same as belonging.</p><p>Offsites.</p><p>Celebrations.</p><p>Photographs on the wall.</p><p>Plenty of language about being “one team.”</p><p>People can participate in all of it.</p><p>But participation is not the same as belonging.</p><p>One test of belonging, at least for me, is much simpler:</p><p><strong>Can people speak honestly?</strong></p><p>Can someone say:</p><p>“I disagree.”</p><p>“I don’t think this will work.”</p><p>“The customer is telling us something different.”</p><p>And say it without worrying that speaking up will come back to hurt them?</p><p>Because silence can easily be mistaken for agreement.</p><p>Sometimes people are silent because they agree.</p><p>Sometimes they are silent because they have learned that disagreeing is not worth the risk.</p><p>That difference matters.</p><p>Not just for culture.</p><p>For the business too.</p><p>No one person sees everything.</p><p>The people closest to customers see things leadership may not.</p><p>The people executing the work see problems others may miss.</p><p>The whole point of having a team is to bring those views into the room before decisions are made.</p><p>Otherwise, you can have many people in an organization and still end up with only one person’s thinking.</p><p>That is why I have started looking at culture differently.</p><p>Not by how many people attend the offsite.</p><p>Not by how many photographs are on the wall.</p><p>But by what happens in the room when someone disagrees.</p><p>You can bring people together.</p><p>You can get them to participate.</p><p>But if they don’t feel safe enough to disagree, that is participation.</p><p><strong>Not belonging.</strong></p>"
+  },
+  {
+    "slug": "when-good-leadership-traits-arent-enough",
+    "title": "When Good Leadership Traits Aren't Enough",
+    "subtitle": "Why qualities that look admirable in isolation can look very different as a whole.",
+    "description": "A reflection on leadership, power, and why individual strengths tell us less than we think.",
+    "date": "2026-08-23",
+    "readingTime": "2 min read",
+    "tags": [
+      "Leadership",
+      "Judgment",
+      "Power"
+    ],
+    "featured": false,
+    "source": "Website",
+    "bodyHtml": "<p>Three very famous characters.</p>\n\n<p>I'll leave their names out for a moment.</p>\n\n<p><strong>Person A</strong></p>\n\n<p>Brilliant. Inventive. Courageous.</p>\n\n<p>Also arrogant, impulsive, and sometimes responsible for problems he later has to solve.</p>\n\n<p>But he learns, takes responsibility, and when the final cost has to be paid, chooses to pay it himself.</p>\n\n<p><strong>Person B</strong></p>\n\n<p>Patient. Strategic. Disciplined.</p>\n\n<p>He sees a problem affecting everyone, thinks long term, and spends years pursuing what he genuinely believes is a better future.</p>\n\n<p>But he becomes so certain that he is right that he gives himself the authority to decide what everyone else should sacrifice.</p>\n\n<p><strong>Person C</strong></p>\n\n<p>Courageous. Principled. Loyal.</p>\n\n<p>He has a strong internal sense of right and wrong and is willing to challenge authority when he believes it has lost its way.</p>\n\n<p>But conviction can become rigidity, and loyalty can influence judgment when someone close to him is involved.</p>\n\n<hr>\n\n<p>The three are <strong>Tony Stark, Thanos and Steve Rogers.</strong></p>\n\n<p>And the moment you read \"Thanos,\" something changes.</p>\n\n<p>You are no longer looking at patience, discipline or strategic thinking in isolation.</p>\n\n<p>You are picturing the whole person.</p>\n\n<p>His beliefs. His choices. His use of power. And the consequences of those choices.</p>\n\n<p>Maybe that itself tells us something about how we think about leadership.</p>\n\n<p>We often evaluate leadership qualities one at a time.</p>\n\n<p>But leadership is never experienced one quality at a time.</p>\n\n<p><strong>Some qualities only become virtues when they are constrained by other qualities.</strong></p>\n\n<p>And once power enters the equation, those combinations matter even more.</p>\n\n<p>Perhaps we spend too much time asking whether someone has good leadership qualities.</p>\n\n<p>The harder question is:</p>\n\n<p><strong>What do all those qualities become together?</strong></p>"
+  }
 ]
