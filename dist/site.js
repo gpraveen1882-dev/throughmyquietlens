@@ -47,3 +47,50 @@ if (librarySearch && libraryAll) {
     if (libraryEmpty) libraryEmpty.hidden = visible !== 0;
   });
 }
+
+
+// Quiet article sharing
+document.querySelectorAll('[data-share]').forEach((share) => {
+  const url = window.location.href;
+  const title = document.title;
+
+  const linkedin = share.querySelector('.linkedin-share');
+  const nativeButton = share.querySelector('.native-share');
+  const copyButton = share.querySelector('.copy-share');
+  const feedback = share.querySelector('.share-feedback');
+
+  if (linkedin) {
+    linkedin.href =
+      'https://www.linkedin.com/sharing/share-offsite/?url=' +
+      encodeURIComponent(url);
+    linkedin.target = '_blank';
+  }
+
+  if (nativeButton) {
+    if (!navigator.share) {
+      nativeButton.hidden = true;
+    } else {
+      nativeButton.addEventListener('click', async () => {
+        try {
+          await navigator.share({ title, url });
+        } catch (err) {
+          if (err && err.name !== 'AbortError') console.error(err);
+        }
+      });
+    }
+  }
+
+  if (copyButton) {
+    copyButton.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(url);
+        if (feedback) feedback.textContent = 'Link copied';
+        setTimeout(() => {
+          if (feedback) feedback.textContent = '';
+        }, 2000);
+      } catch (err) {
+        window.prompt('Copy this link:', url);
+      }
+    });
+  }
+});
