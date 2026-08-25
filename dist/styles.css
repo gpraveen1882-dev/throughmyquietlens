@@ -819,3 +819,120 @@ aspect-ratio:4/3;
   .writing-featured-card { min-height: auto; }
   .writing-all-link { align-items: flex-start; flex-direction: column; }
 }
+
+/* Calmer, reading-first homepage */
+.home-hero-v3 {
+  padding-block: clamp(64px, 8vw, 104px);
+}
+
+.home-hero-v3 .home-hero-inner {
+  max-width: 900px;
+}
+
+.home-hero-v3 h1 {
+  max-width: 820px;
+  margin: 16px 0 22px;
+  font-size: clamp(2.7rem, 5vw, 4.7rem);
+  line-height: 1.04;
+  letter-spacing: -.04em;
+}
+
+.home-hero-v3 .home-deck {
+  max-width: 720px;
+  font-size: clamp(1.08rem, 1.6vw, 1.32rem);
+}
+
+.home-hero-actions {
+  margin-top: 26px;
+}
+
+.home-recent .section-head h2,
+.home-paths .section-head h2 {
+  font-size: clamp(2rem, 3vw, 3rem);
+}
+
+.home-recent-list {
+  display: block;
+}
+
+.home-recent-item {
+  display: grid;
+  grid-template-columns: minmax(240px, .9fr) 140px minmax(280px, 1.1fr) auto;
+  gap: 24px;
+  align-items: start;
+  min-height: 0;
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+}
+
+.home-recent-item h3 {
+  margin: 0;
+  font-size: 1.38rem;
+  line-height: 1.25;
+}
+
+.home-recent-item > p,
+.home-recent-item .read-link {
+  margin: 0;
+}
+
+.home-path-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.home-path {
+  min-height: 0;
+  padding: 24px;
+}
+
+.home-path h3 {
+  margin: 18px 0 10px;
+  font-size: 1.45rem;
+}
+
+.home-path p {
+  font-size: .94rem;
+}
+
+.home-path strong {
+  margin-top: 12px;
+}
+
+.home-note-invite h2 {
+  font-size: clamp(2rem, 3vw, 3rem);
+}
+
+@media (max-width: 900px) {
+  .home-recent-item {
+    grid-template-columns: minmax(220px, .8fr) 120px minmax(260px, 1fr);
+  }
+
+  .home-recent-item .read-link {
+    grid-column: 1 / -1;
+  }
+
+  .home-path-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .home-hero-v3 h1 {
+    font-size: clamp(2.35rem, 11vw, 3.35rem);
+  }
+
+  .home-recent-item {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 20px 0;
+  }
+
+  .home-recent-item .read-link {
+    grid-column: auto;
+    margin-top: 4px;
+  }
+
+  .home-path-grid {
+    grid-template-columns: 1fr;
+  }
+}
