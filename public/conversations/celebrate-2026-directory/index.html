@@ -12,10 +12,6 @@
 <!-- NAV -->
 <nav class="nav">
   <a href="#" class="nav-logo">Celebrate <span>2026</span> · Drive Time</a>
-  <div class="nav-search">
-    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input type="search" id="searchInput" placeholder="Search names, companies, industries…" oninput="applyFilters()">
-  </div>
   <span class="nav-count" id="navCount"></span>
 </nav>
 
@@ -40,6 +36,16 @@
 
     <!-- FILTERS -->
     <div class="filters-section">
+      <div class="discovery-intro">
+        <p class="discovery-eyebrow">Find a story that feels familiar</p>
+        <h2>Explore the people behind Drive Time</h2>
+        <p>Search by role, company, industry, career path, or a topic you care about.</p>
+      </div>
+      <div class="directory-search">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <label class="sr-only" for="searchInput">Search guest stories</label>
+        <input type="search" id="searchInput" placeholder="Try “healthcare,” “career switcher,” “founder”…" oninput="applyFilters()">
+      </div>
       <div class="filters-row">
         <span class="filter-label">Program:</span>
         <button class="filter-btn active" data-type="program" data-val="all"     onclick="setFilter('program','all',this)">All</button>
@@ -49,6 +55,13 @@
       </div>
       <div class="filters-row filters-row-secondary">
         <label class="filter-label" for="industryFilter">Explore by:</label>
+        <select id="journeyFilter" class="filter-select" onchange="setSelectFilter('journey', this.value)">
+          <option value="all">All MBA journeys</option>
+          <option value="enhancer">Career Enhancer</option>
+          <option value="entrepreneur">Entrepreneur</option>
+          <option value="explorer-switcher">Explorer / Career Switcher</option>
+          <option value="life-success">Life Success Beyond Career</option>
+        </select>
         <select id="industryFilter" class="filter-select" onchange="setSelectFilter('industry', this.value)">
           <option value="all">All industries</option>
           <option value="healthcare">Healthcare &amp; Life Sciences</option>
@@ -63,7 +76,7 @@
           <option value="sustainability">Sustainability</option>
         </select>
         <select id="profileFilter" class="filter-select" onchange="setSelectFilter('profile', this.value)">
-          <option value="all">All profiles and journeys</option>
+          <option value="all">All profiles</option>
           <option value="founder">Entrepreneur / Founder</option>
           <option value="career-switcher">Career Switcher</option>
           <option value="executive">Executive Leader</option>
@@ -85,6 +98,21 @@
     <div class="guests-grid" id="guestsGrid"></div>
     <p class="no-results hidden" id="noResults">No guests match your search.</p>
 
+    <aside class="share-card" aria-labelledby="shareTitle">
+      <div class="share-copy">
+        <p class="share-eyebrow">Pass a story forward</p>
+        <h2 id="shareTitle">Share Celebrate 2026</h2>
+        <p>Know someone considering UCLA Anderson? Invite them to explore 29 candid stories from students and alumni.</p>
+        <p class="share-url">throughmyquietlens.com/conversations/celebrate-2026-directory/</p>
+        <button class="copy-link" id="copyDirectoryLink" type="button" onclick="copyDirectoryLink()">Copy link</button>
+        <span class="copy-feedback" id="copyFeedback" role="status" aria-live="polite"></span>
+      </div>
+      <div class="qr-wrap">
+        <img src="celebrate-2026-qr.svg" alt="QR code linking to the Celebrate 2026 guest directory">
+        <span>Scan to explore</span>
+      </div>
+    </aside>
+
   </div>
 </main>
 
@@ -101,34 +129,51 @@
 <script>
 // Prospect-friendly discovery fields, based on the guest tracker and marketing form.
 const GUEST_METADATA = {
-  'victor-hill': { industry: 'finance', profiles: ['founder', 'veteran', 'executive'] },
-  'jon-muth': { industry: 'consumer', profiles: ['founder'] },
-  'jonathan-liu': { industry: 'healthcare', profiles: ['founder', 'physician', 'executive'] },
-  'barbara-alves': { industry: 'media-sports', profiles: ['career-switcher', 'international'] },
-  'perry-poussard': { industry: 'media-sports', profiles: ['lawyer'] },
-  'vishnu-marisa': { industry: 'healthcare,legal', profiles: ['lawyer'] },
-  'robert-morrison': { industry: 'social-impact', profiles: ['executive'] },
-  'stephen-johnson': { industry: 'consulting', profiles: ['founder', 'executive'] },
-  'teresa-prindle': { industry: 'media-sports', profiles: [] },
-  'logan-wood': { industry: 'technology', profiles: ['student-leader'] },
-  'joel-rubin': { industry: 'media-sports', profiles: ['executive'] },
-  'frankie-coelho': { industry: 'consumer', profiles: ['founder', 'career-switcher', 'student-leader'] },
-  'erin-hiley': { industry: 'healthcare,legal', profiles: ['lawyer', 'executive'] },
-  'alex-rayis': { industry: 'real-estate', profiles: [] },
-  'irma-trapero': { industry: 'social-impact', profiles: ['executive'] },
-  'bill-auxier': { industry: 'consumer', profiles: ['founder'] },
-  'becky-wai': { industry: 'healthcare', profiles: ['executive'] },
-  'jordan-hutkin-schwartz': { industry: 'social-impact', profiles: [] },
-  'alexa-tralla': { industry: 'healthcare', profiles: [] },
-  'ishan-asokan': { industry: 'healthcare', profiles: ['physician', 'founder'] },
-  'jacob-byrne': { industry: 'sustainability', profiles: ['career-switcher', 'executive'] },
-  'kevin-dean': { industry: 'technology', profiles: ['career-switcher', 'student-leader'] },
-  'aline-mardelli': { industry: 'media-sports', profiles: [] },
-  'michelle-fan': { industry: 'healthcare,technology', profiles: ['career-switcher', 'international', 'student-leader'] },
-  'leah-torres': { industry: 'consulting', profiles: ['career-switcher', 'student-leader'] },
-  'nissa-zafar-khan': { industry: 'finance', profiles: [] },
-  'joshua-morey': { industry: 'finance', profiles: ['founder'] },
-  'miriam-daucher': { industry: 'consulting', profiles: ['career-switcher', 'international', 'executive'] }
+  'victor-hill': { industry: 'finance', journey: 'entrepreneur', function: 'entrepreneurship founder roles', profiles: ['founder', 'veteran', 'executive'] },
+  'jon-muth': { industry: 'consumer', journey: 'entrepreneur', function: 'entrepreneurship founder roles', profiles: ['founder'] },
+  'jonathan-liu': { industry: 'healthcare', journey: 'entrepreneur', function: 'entrepreneurship founder roles clinical leadership', profiles: ['founder', 'physician', 'executive'] },
+  'barbara-alves': { industry: 'media-sports', journey: 'explorer-switcher', function: 'business development', profiles: ['career-switcher', 'international'] },
+  'perry-poussard': { industry: 'media-sports', journey: 'enhancer', function: 'operations program design', profiles: ['lawyer'] },
+  'vishnu-marisa': { industry: 'healthcare,legal', journey: 'enhancer', function: 'law program management', profiles: ['lawyer'] },
+  'robert-morrison': { industry: 'social-impact', journey: 'enhancer', function: 'executive leadership', profiles: ['executive'] },
+  'stephen-johnson': { industry: 'consulting', journey: 'entrepreneur', function: 'entrepreneurship founder roles', profiles: ['founder', 'executive'] },
+  'teresa-prindle': { industry: 'media-sports', journey: 'enhancer', function: 'strategic partnerships brand go to market', profiles: [] },
+  'logan-wood': { industry: 'technology', journey: 'entrepreneur', function: 'product management', profiles: ['student-leader'] },
+  'joel-rubin': { industry: 'media-sports', journey: 'explorer-switcher', function: 'content strategy executive leadership', profiles: ['executive'] },
+  'frankie-coelho': { industry: 'consumer', journey: 'explorer-switcher', function: 'entrepreneurship founder roles', profiles: ['founder', 'career-switcher', 'student-leader'] },
+  'erin-hiley': { industry: 'healthcare,legal', journey: 'enhancer', function: 'executive leadership', profiles: ['lawyer', 'executive'] },
+  'alex-rayis': { industry: 'real-estate', journey: 'enhancer', function: 'operations technology', profiles: [] },
+  'irma-trapero': { industry: 'social-impact', journey: 'enhancer', function: 'executive leadership', profiles: ['executive'] },
+  'bill-auxier': { industry: 'consumer', journey: 'entrepreneur', function: 'entrepreneurship founder roles', profiles: ['founder'] },
+  'becky-wai': { industry: 'healthcare', journey: 'life-success', function: 'corporate strategy', profiles: ['executive'] },
+  'jordan-hutkin-schwartz': { industry: 'social-impact', journey: 'explorer-switcher', function: 'program management', profiles: [] },
+  'alexa-tralla': { industry: 'healthcare', journey: 'enhancer', function: 'product marketing go to market', profiles: [] },
+  'ishan-asokan': { industry: 'healthcare', journey: 'explorer-switcher', function: 'entrepreneurship clinical leadership', profiles: ['physician', 'founder'] },
+  'jacob-byrne': { industry: 'sustainability', journey: 'enhancer', function: 'executive leadership', profiles: ['career-switcher', 'executive'] },
+  'kevin-dean': { industry: 'technology', journey: 'explorer-switcher', function: 'product management', profiles: ['career-switcher', 'student-leader'] },
+  'aline-mardelli': { industry: 'media-sports', journey: 'enhancer', function: 'business development sales leadership', profiles: [] },
+  'michelle-fan': { industry: 'healthcare,technology', journey: 'explorer-switcher', function: 'operations transformation', profiles: ['career-switcher', 'international', 'student-leader'] },
+  'leah-torres': { industry: 'consulting', journey: 'explorer-switcher', function: 'consulting strategy operations', profiles: ['career-switcher', 'student-leader'] },
+  'nissa-zafar-khan': { industry: 'finance', journey: 'explorer-switcher', function: 'investment banking', profiles: [] },
+  'joshua-morey': { industry: 'finance', journey: 'entrepreneur', function: 'entrepreneurship founder roles', profiles: ['founder'] },
+  'miriam-daucher': { industry: 'consulting', journey: 'enhancer', function: 'corporate strategy change leadership', profiles: ['career-switcher', 'international', 'executive'] }
+};
+
+const INDUSTRY_LABELS = {
+  finance: 'financial services investing banking', consumer: 'consumer entrepreneurship',
+  healthcare: 'healthcare life sciences', legal: 'legal law', technology: 'technology ai',
+  consulting: 'consulting strategy', 'media-sports': 'media sports entertainment',
+  'social-impact': 'social impact education government', 'real-estate': 'real estate construction',
+  sustainability: 'sustainability environmental'
+};
+const PROFILE_LABELS = {
+  founder: 'entrepreneur founder', 'career-switcher': 'career switcher explorer', executive: 'executive leader',
+  physician: 'physician doctor', lawyer: 'lawyer legal', veteran: 'military veteran',
+  international: 'international student', 'student-leader': 'student leader'
+};
+const JOURNEY_LABELS = {
+  enhancer: 'career enhancer', entrepreneur: 'entrepreneur founder',
+  'explorer-switcher': 'explorer career switcher', 'life-success': 'life success beyond career success'
 };
 
 const EPISODE_OVERRIDES = {
@@ -190,7 +235,7 @@ function tocRow(g) {
 
 // ── guest card ─────────────────────────────────────────
 function guestCard(g) {
-  const discovery = GUEST_METADATA[g.id] || { industry: '', profiles: [] };
+  const discovery = GUEST_METADATA[g.id] || { industry: '', journey: '', function: '', profiles: [] };
   const currentStatus = guestStatus(g);
   const episodeUrl = guestEpisode(g);
   const ep = g.ep ? `EP. ${g.ep}` : 'TBD';
@@ -271,8 +316,10 @@ function guestCard(g) {
     footerLinks = `${epFl}${sbFl}${liFl}`;
   }
 
-  const search = [g.name, g.title, g.company, g.host, discovery.industry, ...discovery.profiles].join(' ').toLowerCase();
-  return `<article id="${g.id}" class="guest-card" data-program="${g.program}" data-industry="${discovery.industry}" data-profile="${discovery.profiles.join(',')}" data-search="${search}">
+  const industryTerms = discovery.industry.split(',').map(key => INDUSTRY_LABELS[key] || key);
+  const profileTerms = discovery.profiles.map(key => PROFILE_LABELS[key] || key);
+  const search = [g.name, g.title, g.company, g.host, g.bio, discovery.function, JOURNEY_LABELS[discovery.journey], ...industryTerms, ...profileTerms].filter(Boolean).join(' ').toLowerCase();
+  return `<article id="${g.id}" class="guest-card" data-program="${g.program}" data-industry="${discovery.industry}" data-journey="${discovery.journey}" data-profile="${discovery.profiles.join(',')}" data-search="${search}">
     <div class="card-body">
       <div class="photo-col">
         ${gAv}
@@ -298,7 +345,7 @@ function render() {
 }
 
 // ── filter/search ──────────────────────────────────────
-const filters = { program: 'all', industry: 'all', profile: 'all' };
+const filters = { program: 'all', industry: 'all', journey: 'all', profile: 'all' };
 
 function applyFilters() {
   const q = (document.getElementById('searchInput').value || '').toLowerCase().trim();
@@ -306,9 +353,10 @@ function applyFilters() {
   const match = el => {
     const p = filters.program === 'all' || el.dataset.program === filters.program;
     const i = filters.industry === 'all' || (el.dataset.industry || '').split(',').includes(filters.industry);
+    const j = filters.journey === 'all' || el.dataset.journey === filters.journey;
     const r = filters.profile === 'all' || (el.dataset.profile || '').split(',').includes(filters.profile);
     const m = !q || el.dataset.search.includes(q);
-    return p && i && r && m;
+    return p && i && j && r && m;
   };
   document.querySelectorAll('.guest-card').forEach(c => {
     const v = match(c); c.classList.toggle('hidden', !v); if (v) count++;
@@ -334,14 +382,34 @@ function setSelectFilter(type, val) {
 function resetFilters() {
   filters.program = 'all';
   filters.industry = 'all';
+  filters.journey = 'all';
   filters.profile = 'all';
   document.getElementById('searchInput').value = '';
   document.getElementById('industryFilter').value = 'all';
+  document.getElementById('journeyFilter').value = 'all';
   document.getElementById('profileFilter').value = 'all';
   document.querySelectorAll('[data-type="program"]').forEach(button => {
     button.classList.toggle('active', button.dataset.val === 'all');
   });
   applyFilters();
+}
+
+async function copyDirectoryLink() {
+  const url = 'https://throughmyquietlens.com/conversations/celebrate-2026-directory/';
+  const feedback = document.getElementById('copyFeedback');
+  try {
+    await navigator.clipboard.writeText(url);
+    feedback.textContent = 'Link copied';
+  } catch (error) {
+    const input = document.createElement('textarea');
+    input.value = url;
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand('copy');
+    input.remove();
+    feedback.textContent = 'Link copied';
+  }
+  window.setTimeout(() => { feedback.textContent = ''; }, 2400);
 }
 
 // ── init ───────────────────────────────────────────────
