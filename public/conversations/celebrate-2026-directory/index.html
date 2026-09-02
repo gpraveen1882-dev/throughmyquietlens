@@ -14,7 +14,7 @@
   <a href="#" class="nav-logo">Celebrate <span>2026</span> · Drive Time</a>
   <div class="nav-search">
     <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input type="search" id="searchInput" placeholder="Search guests, companies, hosts…" oninput="applyFilters()">
+    <input type="search" id="searchInput" placeholder="Search names, companies, industries…" oninput="applyFilters()">
   </div>
   <span class="nav-count" id="navCount"></span>
 </nav>
@@ -46,13 +46,34 @@
         <button class="filter-btn"        data-type="program" data-val="EMBA"    onclick="setFilter('program','EMBA',this)">EMBA</button>
         <button class="filter-btn"        data-type="program" data-val="FEMBA"   onclick="setFilter('program','FEMBA',this)">FEMBA</button>
         <button class="filter-btn"        data-type="program" data-val="UCLA-NUS" onclick="setFilter('program','UCLA-NUS',this)">UCLA-NUS</button>
-        <div class="filter-sep"></div>
-        <span class="filter-label">Status:</span>
-        <button class="filter-btn active" data-type="status"  data-val="all"        onclick="setFilter('status','all',this)">All</button>
-        <button class="filter-btn"        data-type="status"  data-val="released"   onclick="setFilter('status','released',this)">Released</button>
-        <button class="filter-btn"        data-type="status"  data-val="upcoming"   onclick="setFilter('status','upcoming',this)">Up Next</button>
-        <button class="filter-btn"        data-type="status"  data-val="production" onclick="setFilter('status','production',this)">In Production</button>
-        <button class="filter-btn"        data-type="status"  data-val="scheduled"  onclick="setFilter('status','scheduled',this)">Scheduled</button>
+      </div>
+      <div class="filters-row filters-row-secondary">
+        <label class="filter-label" for="industryFilter">Explore by:</label>
+        <select id="industryFilter" class="filter-select" onchange="setSelectFilter('industry', this.value)">
+          <option value="all">All industries</option>
+          <option value="healthcare">Healthcare &amp; Life Sciences</option>
+          <option value="technology">Technology &amp; AI</option>
+          <option value="finance">Financial Services &amp; Investing</option>
+          <option value="consulting">Consulting &amp; Strategy</option>
+          <option value="media-sports">Media, Sports &amp; Entertainment</option>
+          <option value="social-impact">Social Impact, Education &amp; Government</option>
+          <option value="consumer">Consumer &amp; Entrepreneurship</option>
+          <option value="real-estate">Real Estate &amp; Construction</option>
+          <option value="legal">Legal</option>
+          <option value="sustainability">Sustainability</option>
+        </select>
+        <select id="profileFilter" class="filter-select" onchange="setSelectFilter('profile', this.value)">
+          <option value="all">All profiles and journeys</option>
+          <option value="founder">Entrepreneur / Founder</option>
+          <option value="career-switcher">Career Switcher</option>
+          <option value="executive">Executive Leader</option>
+          <option value="physician">Physician</option>
+          <option value="lawyer">Lawyer</option>
+          <option value="veteran">Military / Veteran</option>
+          <option value="international">International Student</option>
+          <option value="student-leader">Student Leader</option>
+        </select>
+        <button class="clear-filters" type="button" onclick="resetFilters()">Clear filters</button>
       </div>
     </div>
 
@@ -78,6 +99,51 @@
 
 <script src="data.js"></script>
 <script>
+// Prospect-friendly discovery fields, based on the guest tracker and marketing form.
+const GUEST_METADATA = {
+  'victor-hill': { industry: 'finance', profiles: ['founder', 'veteran', 'executive'] },
+  'jon-muth': { industry: 'consumer', profiles: ['founder'] },
+  'jonathan-liu': { industry: 'healthcare', profiles: ['founder', 'physician', 'executive'] },
+  'barbara-alves': { industry: 'media-sports', profiles: ['career-switcher', 'international'] },
+  'perry-poussard': { industry: 'media-sports', profiles: ['lawyer'] },
+  'vishnu-marisa': { industry: 'healthcare,legal', profiles: ['lawyer'] },
+  'robert-morrison': { industry: 'social-impact', profiles: ['executive'] },
+  'stephen-johnson': { industry: 'consulting', profiles: ['founder', 'executive'] },
+  'teresa-prindle': { industry: 'media-sports', profiles: [] },
+  'logan-wood': { industry: 'technology', profiles: ['student-leader'] },
+  'joel-rubin': { industry: 'media-sports', profiles: ['executive'] },
+  'frankie-coelho': { industry: 'consumer', profiles: ['founder', 'career-switcher', 'student-leader'] },
+  'erin-hiley': { industry: 'healthcare,legal', profiles: ['lawyer', 'executive'] },
+  'alex-rayis': { industry: 'real-estate', profiles: [] },
+  'irma-trapero': { industry: 'social-impact', profiles: ['executive'] },
+  'bill-auxier': { industry: 'consumer', profiles: ['founder'] },
+  'becky-wai': { industry: 'healthcare', profiles: ['executive'] },
+  'jordan-hutkin-schwartz': { industry: 'social-impact', profiles: [] },
+  'alexa-tralla': { industry: 'healthcare', profiles: [] },
+  'ishan-asokan': { industry: 'healthcare', profiles: ['physician', 'founder'] },
+  'jacob-byrne': { industry: 'sustainability', profiles: ['career-switcher', 'executive'] },
+  'kevin-dean': { industry: 'technology', profiles: ['career-switcher', 'student-leader'] },
+  'aline-mardelli': { industry: 'media-sports', profiles: [] },
+  'michelle-fan': { industry: 'healthcare,technology', profiles: ['career-switcher', 'international', 'student-leader'] },
+  'leah-torres': { industry: 'consulting', profiles: ['career-switcher', 'student-leader'] },
+  'nissa-zafar-khan': { industry: 'finance', profiles: [] },
+  'joshua-morey': { industry: 'finance', profiles: ['founder'] },
+  'miriam-daucher': { industry: 'consulting', profiles: ['career-switcher', 'international', 'executive'] }
+};
+
+const EPISODE_OVERRIDES = {
+  'joshua-morey': 'https://www.youtube.com/watch?v=QV8QfBIMnX0',
+  'miriam-daucher': 'https://www.youtube.com/watch?v=Y0R_ZjIaypk'
+};
+
+function guestStatus(g) {
+  return g.id === 'nissa-zafar-khan' ? 'upcoming' : 'released';
+}
+
+function guestEpisode(g) {
+  return EPISODE_OVERRIDES[g.id] || g.episode_url;
+}
+
 // ── helpers ────────────────────────────────────────────
 function initials(name) {
   return name.split(/[\s&]+/).filter(Boolean).map(w => w[0]).slice(0, 2).join('').toUpperCase();
@@ -88,7 +154,7 @@ function avatarColor(name) {
   return palette[h % palette.length];
 }
 function statusLabel(s) {
-  return { released:'Released', upcoming:'Up Next', production:'In Production', scheduled:'Scheduled' }[s] || s;
+  return { released:'Released', upcoming:'Coming Soon', production:'In Production', scheduled:'Scheduled' }[s] || s;
 }
 function statusClass(s) {
   return { released:'badge-released', upcoming:'badge-upcoming', production:'badge-production', scheduled:'badge-scheduled' }[s] || '';
@@ -98,10 +164,12 @@ function statusClass(s) {
 function tocRow(g) {
   const ep = g.ep ? `EP.${g.ep}` : 'TBD';
   const prog = `<span class="badge badge-${g.program.toLowerCase()}">${g.program}</span>`;
-  const stat = `<span class="badge ${statusClass(g.status)}">${statusLabel(g.status)}</span>`;
+  const currentStatus = guestStatus(g);
+  const episodeUrl = guestEpisode(g);
+  const stat = `<span class="badge ${statusClass(currentStatus)}">${statusLabel(currentStatus)}</span>`;
   const rel  = g.release !== 'TBD' ? g.release : `<span style="color:var(--text-muted)">TBD</span>`;
-  const epLnk = g.episode_url
-    ? `<a href="${g.episode_url}" target="_blank" class="alink alink-episode">▶ Episode</a>`
+  const epLnk = episodeUrl
+    ? `<a href="${episodeUrl}" target="_blank" class="alink alink-episode">▶ Episode</a>`
     : `<span class="alink alink-pending">▶ coming soon</span>`;
   const sbLnk = g.soundbite_url
     ? `<a href="${g.soundbite_url}" target="_blank" class="alink alink-soundbite">✦ Soundbites</a>` : '';
@@ -122,9 +190,12 @@ function tocRow(g) {
 
 // ── guest card ─────────────────────────────────────────
 function guestCard(g) {
+  const discovery = GUEST_METADATA[g.id] || { industry: '', profiles: [] };
+  const currentStatus = guestStatus(g);
+  const episodeUrl = guestEpisode(g);
   const ep = g.ep ? `EP. ${g.ep}` : 'TBD';
   const prog = `<span class="badge badge-${g.program.toLowerCase()}">${g.program} '${String(g.year).slice(-2)}</span>`;
-  const stat = `<span class="badge ${statusClass(g.status)}">${statusLabel(g.status)}</span>`;
+  const stat = `<span class="badge ${statusClass(currentStatus)}">${statusLabel(currentStatus)}</span>`;
   const titleCo = [g.title, g.company].filter(Boolean).join(' · ');
   const bio = g.bio
     ? `<p class="card-bio">${g.bio}</p>`
@@ -160,8 +231,8 @@ function guestCard(g) {
   const hAv = `<div class="avatar-sm" style="background:${hColor}">${hAvContent}</div>`;
 
   // footer links
-  const epFl = g.episode_url
-    ? `<a href="${g.episode_url}" target="_blank" class="flink flink-episode">▶ Listen</a>`
+  const epFl = episodeUrl
+    ? `<a href="${episodeUrl}" target="_blank" class="flink flink-episode">▶ Listen</a>`
     : `<span class="flink-pending">Episode link coming soon</span>`;
   const sbFl = g.soundbite_url
     ? `<a href="${g.soundbite_url}" target="_blank" class="flink flink-soundbite">✦ Soundbites</a>` : '';
@@ -200,8 +271,8 @@ function guestCard(g) {
     footerLinks = `${epFl}${sbFl}${liFl}`;
   }
 
-  const search = [g.name, g.title, g.company, g.host].join(' ').toLowerCase();
-  return `<article id="${g.id}" class="guest-card" data-program="${g.program}" data-status="${g.status}" data-search="${search}">
+  const search = [g.name, g.title, g.company, g.host, discovery.industry, ...discovery.profiles].join(' ').toLowerCase();
+  return `<article id="${g.id}" class="guest-card" data-program="${g.program}" data-industry="${discovery.industry}" data-profile="${discovery.profiles.join(',')}" data-search="${search}">
     <div class="card-body">
       <div class="photo-col">
         ${gAv}
@@ -227,16 +298,17 @@ function render() {
 }
 
 // ── filter/search ──────────────────────────────────────
-const filters = { program: 'all', status: 'all' };
+const filters = { program: 'all', industry: 'all', profile: 'all' };
 
 function applyFilters() {
   const q = (document.getElementById('searchInput').value || '').toLowerCase().trim();
   let count = 0;
   const match = el => {
     const p = filters.program === 'all' || el.dataset.program === filters.program;
-    const s = filters.status  === 'all' || el.dataset.status  === filters.status;
+    const i = filters.industry === 'all' || (el.dataset.industry || '').split(',').includes(filters.industry);
+    const r = filters.profile === 'all' || (el.dataset.profile || '').split(',').includes(filters.profile);
     const m = !q || el.dataset.search.includes(q);
-    return p && s && m;
+    return p && i && r && m;
   };
   document.querySelectorAll('.guest-card').forEach(c => {
     const v = match(c); c.classList.toggle('hidden', !v); if (v) count++;
@@ -251,6 +323,24 @@ function setFilter(type, val, btn) {
   filters[type] = val;
   document.querySelectorAll(`[data-type="${type}"]`).forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
+  applyFilters();
+}
+
+function setSelectFilter(type, val) {
+  filters[type] = val;
+  applyFilters();
+}
+
+function resetFilters() {
+  filters.program = 'all';
+  filters.industry = 'all';
+  filters.profile = 'all';
+  document.getElementById('searchInput').value = '';
+  document.getElementById('industryFilter').value = 'all';
+  document.getElementById('profileFilter').value = 'all';
+  document.querySelectorAll('[data-type="program"]').forEach(button => {
+    button.classList.toggle('active', button.dataset.val === 'all');
+  });
   applyFilters();
 }
 
