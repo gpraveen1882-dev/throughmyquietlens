@@ -21,6 +21,26 @@ edit('index.html', html => html.replace(
   `<div class="home-recent-list"><article class="home-recent-item"><h3><a href="${url}">${title}</a></h3><p class="pub-date home-recent-date">1 September 2026</p><p>${description}</p><a class="read-link" href="${url}">Read →</a></article>`
 ));
 
+// Standalone essays are added after the main site build. Re-sort the complete
+// Recent Writing feed so those additions cannot displace newer writing.
+const homePath = path.join(dist, 'index.html');
+if (fs.existsSync(homePath)) {
+  let home = fs.readFileSync(homePath, 'utf8');
+  const recentMatch = home.match(/<div class="home-recent-list">([\s\S]*?)<\/div><\/div><\/section>/);
+  if (recentMatch) {
+    const cards = recentMatch[1].match(/<article class="home-recent-item">[\s\S]*?<\/article>/g) || [];
+    const datedCards = cards.map((card, index) => {
+      const dateText = card.match(/<p class="pub-date home-recent-date">([^<]+)<\/p>/)?.[1] || '';
+      const timestamp = Date.parse(dateText);
+      return { card, index, timestamp: Number.isNaN(timestamp) ? 0 : timestamp };
+    });
+    datedCards.sort((a, b) => b.timestamp - a.timestamp || a.index - b.index);
+    const sorted = datedCards.slice(0, 5).map(item => item.card).join('');
+    home = home.replace(recentMatch[0], `<div class="home-recent-list">${sorted}</div></div></section>`);
+    fs.writeFileSync(homePath, home);
+  }
+}
+
 edit('essays/index.html', html => html.replace(
   '<div class="container list">',
   `<div class="container list"><article class="list-item"><div class="meta"><span>Through My Quiet Lens</span><span class="pub-date">1 September 2026</span><span>2 min read</span></div><div><h2><a href="${url}">${title}</a></h2><p>${description}</p><div class="tags"><span class="tag">#Data</span><span class="tag">#Judgment</span><span class="tag">#AI</span></div></div><a href="${url}" aria-label="Read ${title}">Read →</a></article>`
