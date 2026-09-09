@@ -40,23 +40,9 @@ const screenTime = frame(`
   <div style="font-size:.78rem;color:#aaa;margin-top:.85rem">A pattern becomes visible without stopping you from using the phone.</div>
 </div>`, 'Illustrative weekly activity report: total use and change over time.');
 
-const resource = frame(`
-<div role="img" aria-label="Illustrative AI Resource Report showing weekly estimated energy, image generations and trend" style="padding:1.3rem;background:#f4f0e8;color:#26231f;font-family:Arial,sans-serif">
-  <div style="font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:#777066">A possible interface</div>
-  <div style="font-size:1.45rem;font-weight:700;margin:.2rem 0 1rem">Your AI Resource Report</div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
-    <div style="padding:.9rem;background:#fff;border-radius:11px"><div style="font-size:.74rem;color:#777">Estimated energy this week</div><div style="font-size:1.25rem;font-weight:700;margin-top:.18rem">Range shown</div></div>
-    <div style="padding:.9rem;background:#fff;border-radius:11px"><div style="font-size:.74rem;color:#777">Change from last week</div><div style="font-size:1.25rem;font-weight:700;margin-top:.18rem">Trend shown</div></div>
-    <div style="padding:.9rem;background:#fff;border-radius:11px"><div style="font-size:.74rem;color:#777">Images generated</div><div style="font-size:1.25rem;font-weight:700;margin-top:.18rem">Activity count</div></div>
-    <div style="padding:.9rem;background:#fff;border-radius:11px"><div style="font-size:.74rem;color:#777">Your longer-term average</div><div style="font-size:1.25rem;font-weight:700;margin-top:.18rem">Baseline shown</div></div>
-  </div>
-  <div style="margin-top:.85rem;font-size:.77rem;line-height:1.45;color:#6d665c">Not a warning. Not a guilt score. A feedback layer with uncertainty made explicit.</div>
-</div>`, 'Illustrative concept only — not a claim that today’s platforms can provide a perfectly precise per-user footprint.');
-
 html = html.replace(/<p>\s*<img[^>]*src="\/images\/generate-button-sp\.jpg"[^>]*>\s*<\/p>/i, utility);
 html = html.replace(/<p>\s*<img[^>]*src="\/images\/generate-button-screen-time\.jpg"[^>]*>\s*<\/p>/i, screenTime);
 
-const reportBlock = /<p>Imagine a simple weekly report:<\/p>\s*<p><strong>Your AI Resource Report<\/strong><\/p>\s*<p>Estimated energy used this week<br>Change from last week<br>Number of images generated<br>Energy used by image generation<br>Your average over time<\/p>/i;
-html = html.replace(reportBlock, `<p>Imagine a simple weekly report:</p>${resource}`);
+// Keep the original AI Resource Report section from the essay unchanged.
 
 fs.writeFileSync(file, html);
