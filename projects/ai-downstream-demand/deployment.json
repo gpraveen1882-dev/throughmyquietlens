@@ -1,0 +1,15 @@
+{
+  "indicator": "US Business AI Deployment Depth",
+  "source": "U.S. Census Bureau CES-26-25, 2026 AI supplement to BTOS",
+  "period": "Nov 2025-Jan 2026",
+  "scope": "Nationally representative firm-level evidence. This is a periodic structural snapshot, not a recurring trend series.",
+  "firmUsePercent": 18,
+  "employmentWeightedUsePercent": 32,
+  "workerTaskUsePercent": 23,
+  "employmentWeightedWorkerTaskUsePercent": 41,
+  "threeOrFewerFunctionsPercent": 57,
+  "threeOrFewerTasksPercent": 65,
+  "augmentOnlyPercent": 66,
+  "aiRelatedEmploymentDecreasePercent": 2,
+  "reading": "Broad reach, but still shallow inside many adopters. Larger employers are much more exposed than the raw firm count suggests."
+}
