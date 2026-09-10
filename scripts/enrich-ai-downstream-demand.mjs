@@ -18,6 +18,10 @@ if (!html.includes('.industry-controls{')) {
   html = html.replace('@media(max-width:850px){', '@media(max-width:850px){.industry-row{grid-template-columns:120px 1fr 54px}.evidence-layers{grid-template-columns:1fr}');
 }
 
+if (!html.includes('.share-row{')) {
+  html = html.replace('.evidence-grid{', '.share-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-top:1px solid var(--rule);margin-top:28px;padding-top:18px}.share-label{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:4px}.share-link,.share-copy{border:1px solid var(--rule);background:#fff;color:var(--text);padding:8px 11px;font:700 .74rem Arial,sans-serif;text-decoration:none;cursor:pointer}.share-link:hover,.share-copy:hover{border-color:var(--accent);color:var(--accent)}.share-status{font-size:.72rem;color:var(--muted)}.evidence-grid{');
+}
+
 const industryBlock = `<div class="section-label">Who is driving adoption? <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#8a919b">· Interactive Census view</span></div><section class="monitor-panel"><div class="panel-head"><h2>Adoption is not evenly distributed across the economy</h2><div class="source-note"><a href="https://www.census.gov/library/stories/2026/05/ai-use-businesses.html" target="_blank" rel="noopener noreferrer">U.S. Census Bureau ↗</a><br>Selected sectors · May 3, 2026</div></div><div class="industry-controls" role="group" aria-label="Choose adoption view"><button class="industry-toggle" id="industry-current" type="button" aria-pressed="true">Current use</button><button class="industry-toggle" id="industry-expected" type="button" aria-pressed="false">Expected use</button></div><div class="industry-chart" id="industry-chart" aria-live="polite"></div><div class="industry-reference" id="industry-reference"></div><div class="question-block"><h3>Why this matters</h3><p>National averages can understate the downstream demand signal because adoption is much higher in knowledge-intensive sectors. The infrastructure question depends not only on how many firms adopt AI, but which firms and sectors are driving usage.</p></div><div class="method" id="industry-method"></div></section>`;
 
 if (!html.includes('Who is driving adoption?')) {
@@ -50,6 +54,14 @@ if (!html.includes('async function loadIndustry()')) {
 
 if (!html.includes('async function loadEconomic()')) {
   html = html.replace("loadPayment().catch(()=>{document.getElementById('intensity-change').textContent='Data unavailable';});", `loadPayment().catch(()=>{document.getElementById('intensity-change').textContent='Data unavailable';});async function loadEconomic(){const r=await fetch('./economic-value.json');const d=await r.json();document.getElementById('economic-layers').innerHTML=d.layers.map(x=>'<div class="evidence-layer"><div class="signal-label">'+x.name+'</div><div class="signal-state '+(x.status.includes('Positive')||x.status.includes('Strong')?'up':'unknown')+'">'+x.status+'</div><div class="metric">'+x.metric+'</div><p>'+x.detail+'</p><div class="method">'+x.source+'</div></div>').join('');document.getElementById('economic-reading').textContent=d.reading;}loadEconomic().catch(()=>{document.getElementById('economic-reading').textContent='Data unavailable';});`);
+}
+
+if (!html.includes('Share this monitor')) {
+  const shareUrl = 'https://throughmyquietlens.com/projects/ai-downstream-demand/';
+  const shareTitle = 'AI Downstream Demand Monitor';
+  const shareBlock = `<div class="share-row" aria-label="Share this monitor"><span class="share-label">Share this monitor</span><a class="share-link" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}" target="_blank" rel="noopener noreferrer">LinkedIn</a><a class="share-link" href="https://wa.me/?text=${encodeURIComponent(shareTitle + ' — ' + shareUrl)}" target="_blank" rel="noopener noreferrer">WhatsApp</a><a class="share-link" href="mailto:?subject=${encodeURIComponent(shareTitle)}&body=${encodeURIComponent('Thought you might find this useful: ' + shareUrl)}">Email</a><button class="share-copy" id="share-copy" type="button">Copy link</button><span class="share-status" id="share-status" aria-live="polite"></span></div>`;
+  html = html.replace('<p class="back-link"><a href="/projects/">← Back to Ideas in Practice</a></p>', shareBlock + '<p class="back-link"><a href="/projects/">← Back to Ideas in Practice</a></p>');
+  html = html.replace('</script></body></html>', `const shareCopy=document.getElementById('share-copy');if(shareCopy){shareCopy.addEventListener('click',async()=>{const url='${shareUrl}';const status=document.getElementById('share-status');try{await navigator.clipboard.writeText(url);status.textContent='Link copied';setTimeout(()=>status.textContent='',2200);}catch{status.textContent='Copy failed — use your browser address bar';}});}</script></body></html>`);
 }
 
 fs.writeFileSync(page, html);
