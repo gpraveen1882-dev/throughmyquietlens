@@ -15,14 +15,16 @@ const projectsPage = path.join(root, 'dist', 'projects', 'index.html');
 if (fs.existsSync(projectsPage)) {
   let html = fs.readFileSync(projectsPage, 'utf8');
 
-  // Keep the paired inquiry as the single discovery point for the two related AI pages.
   html = html.replace(/<article class="project-card"><p class="eyebrow">Visual explainer<\/p><h2>Inside the AI Data-Centre Buildout<\/h2>[\s\S]*?<\/article>/g, '');
   html = html.replace(/<article class="project-card"><p class="eyebrow">Evidence monitor<\/p><h2>AI Downstream Demand Monitor<\/h2>[\s\S]*?<\/article>/g, '');
-  html = html.replace(/<article class="project-card"><p class="eyebrow">Paired inquiry<\/p><h2>AI Infrastructure &amp; Demand<\/h2>[\s\S]*?<\/article>/g, '');
+  html = html.replace(/<article class="project-card"><p class="eyebrow">Paired inquiry(?: · Data centres &amp; AI)?<\/p><h2>AI Infrastructure &amp; Demand<\/h2>[\s\S]*?<\/article>/g, '');
 
-  const card = `<article class="project-card"><p class="eyebrow">Paired inquiry · Data centres &amp; AI</p><h2>AI Infrastructure &amp; Demand</h2><p>AI infrastructure is being built rapidly. Explore what is actually being built, then follow whether adoption, payment, usage depth and realized value are growing fast enough underneath it.</p><a class="read-link" href="/projects/ai-infrastructure-demand/">Explore the inquiry →</a></article>`;
+  const bridge = `<div style="max-width:760px;margin:0 auto 26px;font-family:Georgia,serif;font-size:1.04rem;line-height:1.6;color:#414846">A recurring question across these projects is how AI moves from <strong>build</strong> to <strong>use</strong> to <strong>value</strong> — and what that growth means for the resources required to sustain it.</div>`;
+  if (!html.includes('A recurring question across these projects')) {
+    html = html.replace('<div class="container project-grid">', `<div class="container">${bridge}</div><div class="container project-grid">`);
+  }
 
-  // Put this inquiry first so it is immediately discoverable from Ideas in Practice.
+  const card = `<article class="project-card"><p class="eyebrow">Connected inquiry · Data centres, AI &amp; resources</p><h2>AI Infrastructure &amp; Demand</h2><p>Follow one system from end to end: what is being built, whether adoption and usage are growing underneath it, whether that use is creating value, and what continued growth means for resource demand.</p><a class="read-link" href="/projects/ai-infrastructure-demand/">Explore the inquiry →</a></article>`;
   html = html.replace('<div class="container project-grid">', `<div class="container project-grid">${card}`);
   fs.writeFileSync(projectsPage, html);
 }
@@ -54,4 +56,4 @@ if (fs.existsSync(monitor)) {
   fs.writeFileSync(monitor, html);
 }
 
-console.log('Linked and featured AI infrastructure and demand inquiry');
+console.log('Linked AI build, use, value and resource-impact work');
