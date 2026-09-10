@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node scripts/publish-ai-startup.mjs && node scripts/publish-generate-button-inline.mjs && node scripts/add-generate-button-context.mjs && node scripts/materialize-generate-button-images.mjs && node scripts/build.mjs && node scripts/publish-ai-downstream-demand.mjs && node scripts/restore-generate-button-images.mjs && node scripts/publish-amma.mjs && node scripts/publish-data-filter-essay.mjs && node scripts/publish-thread.mjs && node scripts/polish-thread.mjs && node scripts/publish-booking.mjs",
+    "build": "node scripts/publish-ai-startup.mjs && node scripts/publish-generate-button-inline.mjs && node scripts/add-generate-button-context.mjs && node scripts/materialize-generate-button-images.mjs && node scripts/build.mjs && node scripts/publish-ai-downstream-demand.mjs && node scripts/enrich-ai-downstream-demand.mjs && node scripts/restore-generate-button-images.mjs && node scripts/publish-amma.mjs && node scripts/publish-data-filter-essay.mjs && node scripts/publish-thread.mjs && node scripts/polish-thread.mjs && node scripts/publish-booking.mjs",
     "check": "node scripts/check.mjs",
     "deploy": "npm run build && wrangler deploy"
   },
