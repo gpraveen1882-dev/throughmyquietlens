@@ -1,0 +1,17 @@
+{
+  "title": "AI adoption by firm size",
+  "source": "U.S. Census Bureau Business Trends and Outlook Survey",
+  "sourceUrl": "https://www.census.gov/library/stories/2026/05/ai-use-businesses.html",
+  "referencePeriod": "Period ending May 3, 2026",
+  "note": "Selected firm-size classes explicitly reported by Census. Current-use values only; Census also publishes the broader firm-size series in BTOS visualizations and downloads.",
+  "sizes": [
+    {
+      "name": "100–249 employees",
+      "currentPercent": 32.0
+    },
+    {
+      "name": "250+ employees",
+      "currentPercent": 37.0
+    }
+  ]
+}
