@@ -1,0 +1,20 @@
+{
+  "indicator": "Paid AI Adoption — Ramp-observed U.S. businesses",
+  "source": "Ramp AI Index, September 2026",
+  "sourceUrl": "https://ramp.com/data/ai-index-sept-2026",
+  "period": "2026-08",
+  "scope": "Businesses observed on Ramp; transaction-data proxy, not a nationally representative U.S. survey.",
+  "vendors": [
+    {"name": "Anthropic", "value": 43.8, "monthlyChangePp": 0.34},
+    {"name": "OpenAI", "value": 39.8, "monthlyChangePp": 0.09}
+  ],
+  "intensity": {
+    "segment": "Top 1% of AI-spending firms",
+    "julyPerEmployeeUsd": 7976,
+    "augustPerEmployeeUsd": 7205,
+    "monthlyChangePercent": -9.7,
+    "effectiveTokenPriceDeclineFromMarchPeakPercent": -41,
+    "effectiveTokenPriceUsdPerMillion": 0.68
+  },
+  "interpretation": "Paid adoption continues to rise, but new adoption is decelerating. Spend intensity softened among the heaviest AI spenders, while lower token prices complicate any inference from spend alone."
+}
