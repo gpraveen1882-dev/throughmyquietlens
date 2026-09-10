@@ -1,0 +1,29 @@
+{
+  "title": "Who is driving AI adoption?",
+  "source": "U.S. Census Bureau Business Trends and Outlook Survey",
+  "sourceUrl": "https://www.census.gov/library/stories/2026/05/ai-use-businesses.html",
+  "referencePeriod": "Period ending May 3, 2026",
+  "nationalCurrentPercent": 19.8,
+  "note": "Selected sectors explicitly reported by Census. Expected-use values are approximate values reported by Census for the next six months.",
+  "sectors": [
+    {
+      "name": "Information",
+      "currentPercent": 39.7,
+      "expectedPercent": 42.0,
+      "expectedApproximate": true
+    },
+    {
+      "name": "Finance & Insurance",
+      "currentPercent": 33.9,
+      "expectedPercent": 39.0,
+      "expectedApproximate": true
+    },
+    {
+      "name": "Retail Trade",
+      "currentPercent": 14.0,
+      "currentApproximate": true,
+      "expectedPercent": 17.0,
+      "expectedApproximate": true
+    }
+  ]
+}
