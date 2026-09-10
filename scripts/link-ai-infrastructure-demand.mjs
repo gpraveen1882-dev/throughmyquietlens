@@ -14,12 +14,16 @@ fs.cpSync(source, destination, { recursive: true });
 const projectsPage = path.join(root, 'dist', 'projects', 'index.html');
 if (fs.existsSync(projectsPage)) {
   let html = fs.readFileSync(projectsPage, 'utf8');
-  html = html.replace(/<article class="project-card"><p class="eyebrow">Visual explainer<\/p><h2>Inside the AI Data-Centre Buildout<\/h2>[\s\S]*?<\/article>/, '');
-  html = html.replace(/<article class="project-card"><p class="eyebrow">Evidence monitor<\/p><h2>AI Downstream Demand Monitor<\/h2>[\s\S]*?<\/article>/, '');
-  const card = `<article class="project-card"><p class="eyebrow">Paired inquiry</p><h2>AI Infrastructure &amp; Demand</h2><p>What is being built for AI, what demand is developing underneath it, and whether the gap between infrastructure and economically meaningful use may be narrowing.</p><a class="read-link" href="/projects/ai-infrastructure-demand/">Explore the inquiry →</a></article>`;
-  if (!html.includes('/projects/ai-infrastructure-demand/')) {
-    html = html.replace('</div></section></main>', `${card}</div></section></main>`);
-  }
+
+  // Keep the paired inquiry as the single discovery point for the two related AI pages.
+  html = html.replace(/<article class="project-card"><p class="eyebrow">Visual explainer<\/p><h2>Inside the AI Data-Centre Buildout<\/h2>[\s\S]*?<\/article>/g, '');
+  html = html.replace(/<article class="project-card"><p class="eyebrow">Evidence monitor<\/p><h2>AI Downstream Demand Monitor<\/h2>[\s\S]*?<\/article>/g, '');
+  html = html.replace(/<article class="project-card"><p class="eyebrow">Paired inquiry<\/p><h2>AI Infrastructure &amp; Demand<\/h2>[\s\S]*?<\/article>/g, '');
+
+  const card = `<article class="project-card"><p class="eyebrow">Paired inquiry · Data centres &amp; AI</p><h2>AI Infrastructure &amp; Demand</h2><p>AI infrastructure is being built rapidly. Explore what is actually being built, then follow whether adoption, payment, usage depth and realized value are growing fast enough underneath it.</p><a class="read-link" href="/projects/ai-infrastructure-demand/">Explore the inquiry →</a></article>`;
+
+  // Put this inquiry first so it is immediately discoverable from Ideas in Practice.
+  html = html.replace('<div class="container project-grid">', `<div class="container project-grid">${card}`);
   fs.writeFileSync(projectsPage, html);
 }
 
@@ -50,4 +54,4 @@ if (fs.existsSync(monitor)) {
   fs.writeFileSync(monitor, html);
 }
 
-console.log('Linked AI infrastructure and demand inquiry');
+console.log('Linked and featured AI infrastructure and demand inquiry');
