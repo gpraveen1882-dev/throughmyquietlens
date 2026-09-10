@@ -1,0 +1,28 @@
+{
+  "indicator": "AI Economic Value Evidence",
+  "updated": "2026-09-10",
+  "layers": [
+    {
+      "name": "Task productivity",
+      "status": "Positive evidence",
+      "metric": "+14%",
+      "detail": "Average productivity gain for 5,179 customer-support agents given access to a generative-AI assistant; gains were much larger for novice and lower-skilled workers.",
+      "source": "NBER / Quarterly Journal of Economics study"
+    },
+    {
+      "name": "Enterprise monetization",
+      "status": "Strong provider signal",
+      "metric": "30M+",
+      "detail": "Paid Microsoft 365 Copilot seats reported in FY2026 Q4, alongside rapid growth in large enterprise deployments.",
+      "source": "Microsoft FY2026 Q4 earnings"
+    },
+    {
+      "name": "Broad realized ROI",
+      "status": "Insufficient recurring evidence",
+      "metric": "?",
+      "detail": "There is still no broad, recurring primary dataset showing realized enterprise AI ROI across the economy. Case studies and vendor disclosures are useful but not a substitute.",
+      "source": "Monitor assessment"
+    }
+  ],
+  "reading": "AI can create measurable value in specific workflows and is monetizing at scale, but broad realized enterprise ROI remains too unevenly measured to call the economic-value signal strong."
+}
