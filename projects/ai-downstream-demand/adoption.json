@@ -1,0 +1,12 @@
+{
+  "indicator": "US Business AI Adoption",
+  "source": "US Census Bureau BTOS",
+  "unit": "percent",
+  "methodology": "Share of U.S. employer businesses reporting AI use in any business function during the prior two weeks. Selected verified observations only; no interpolation.",
+  "observations": [
+    {"date": "2026-05-03", "value": 19.8},
+    {"date": "2026-06-28", "value": 20.6},
+    {"date": "2026-07-26", "value": 21.5},
+    {"date": "2026-08-23", "value": 22.4}
+  ]
+}
