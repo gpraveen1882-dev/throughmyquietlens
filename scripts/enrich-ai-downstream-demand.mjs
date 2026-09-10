@@ -27,6 +27,12 @@ if (!html.includes('Sources & methodology')) {
   html = html.replace('<p class="back-link"><a href="/projects/">← Back to Ideas in Practice</a></p>', methodologyBlock + '<p class="back-link"><a href="/projects/">← Back to Ideas in Practice</a></p>');
 }
 
+html = html.replace('Primary sources where available · Updated periodically · No composite score', 'Primary sources where available · Updated periodically, anchored to new U.S. Census BTOS releases and supplemented by material provider, transaction and economic-value updates · No composite score');
+
+if (!html.includes('Update cadence:')) {
+  html = html.replace('<div style="margin-top:18px;font-size:.78rem;letter-spacing:.04em;color:#667085">Breadth → Depth → Monetization → Economic return</div>', '<div style="margin-top:18px;font-size:.78rem;letter-spacing:.04em;color:#667085">Breadth → Depth → Monetization → Economic return</div><p style="margin:8px 0 0;font-size:.76rem;line-height:1.5;color:#7b8490"><strong>Update cadence:</strong> refreshed when new Census BTOS data is released, typically every few weeks, with interim updates when a material new Ramp, provider or economic-value signal changes the reading.</p>');
+}
+
 if (!html.includes('async function loadEconomic()')) {
   html = html.replace("loadPayment().catch(()=>{document.getElementById('intensity-change').textContent='Data unavailable';});", `loadPayment().catch(()=>{document.getElementById('intensity-change').textContent='Data unavailable';});async function loadEconomic(){const r=await fetch('./economic-value.json');const d=await r.json();document.getElementById('economic-layers').innerHTML=d.layers.map(x=>'<div class="evidence-layer"><div class="signal-label">'+x.name+'</div><div class="signal-state '+(x.status.includes('Positive')||x.status.includes('Strong')?'up':'unknown')+'">'+x.status+'</div><div class="metric">'+x.metric+'</div><p>'+x.detail+'</p><div class="method">'+x.source+'</div></div>').join('');document.getElementById('economic-reading').textContent=d.reading;}loadEconomic().catch(()=>{document.getElementById('economic-reading').textContent='Data unavailable';});`);
 }
