@@ -14,6 +14,18 @@ if (!fs.existsSync(path.join(sourceDir, 'index.html'))) {
 fs.mkdirSync(destinationDir, { recursive: true });
 fs.cpSync(sourceDir, destinationDir, { recursive: true });
 
+// Add a visible path from the exploratory project page into the working demonstration.
+const projectPage = path.join(destinationDir, 'index.html');
+if (fs.existsSync(projectPage)) {
+  let html = fs.readFileSync(projectPage, 'utf8');
+  if (!html.includes('Open the demonstration workspace')) {
+    const marker = '<p class="quiet-note" style="margin-top:1.2rem"><strong>What it is not:</strong>';
+    const demoLink = '<p style="margin-top:1.25rem"><a class="button" href="/projects/philanthropy-research/demo/">Open the demonstration workspace →</a></p>';
+    html = html.replace(marker, `${demoLink}${marker}`);
+    fs.writeFileSync(projectPage, html);
+  }
+}
+
 const projectsIndex = path.join(dist, 'projects', 'index.html');
 if (fs.existsSync(projectsIndex)) {
   let html = fs.readFileSync(projectsIndex, 'utf8');
