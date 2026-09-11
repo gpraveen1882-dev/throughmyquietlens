@@ -4,15 +4,15 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
-const source = path.join(root, 'projects', 'philanthropy-research', 'index.html');
-const destination = path.join(dist, 'projects', 'philanthropy-research', 'index.html');
+const sourceDir = path.join(root, 'projects', 'philanthropy-research');
+const destinationDir = path.join(dist, 'projects', 'philanthropy-research');
 
-if (!fs.existsSync(source)) {
+if (!fs.existsSync(path.join(sourceDir, 'index.html'))) {
   throw new Error('Missing source page: projects/philanthropy-research/index.html');
 }
 
-fs.mkdirSync(path.dirname(destination), { recursive: true });
-fs.copyFileSync(source, destination);
+fs.mkdirSync(destinationDir, { recursive: true });
+fs.cpSync(sourceDir, destinationDir, { recursive: true });
 
 const projectsIndex = path.join(dist, 'projects', 'index.html');
 if (fs.existsSync(projectsIndex)) {
@@ -27,11 +27,15 @@ if (fs.existsSync(projectsIndex)) {
 const sitemap = path.join(dist, 'sitemap.xml');
 if (fs.existsSync(sitemap)) {
   let xml = fs.readFileSync(sitemap, 'utf8');
-  const loc = '<url><loc>https://throughmyquietlens.com/projects/philanthropy-research/</loc></url>';
-  if (!xml.includes('/projects/philanthropy-research/')) {
-    xml = xml.replace('</urlset>', `${loc}</urlset>`);
-    fs.writeFileSync(sitemap, xml);
+  const entries = [
+    '<url><loc>https://throughmyquietlens.com/projects/philanthropy-research/</loc></url>',
+    '<url><loc>https://throughmyquietlens.com/projects/philanthropy-research/demo/</loc></url>'
+  ];
+  for (const loc of entries) {
+    const url = loc.match(/<loc>(.*?)<\/loc>/)[1];
+    if (!xml.includes(url)) xml = xml.replace('</urlset>', `${loc}</urlset>`);
   }
+  fs.writeFileSync(sitemap, xml);
 }
 
-console.log('Published philanthropy research project page.');
+console.log('Published philanthropy research project and demonstration workspace.');
