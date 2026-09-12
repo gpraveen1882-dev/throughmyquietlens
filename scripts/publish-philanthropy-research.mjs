@@ -30,7 +30,7 @@ const projectsIndex = path.join(dist, 'projects', 'index.html');
 if (fs.existsSync(projectsIndex)) {
   let html = fs.readFileSync(projectsIndex, 'utf8');
   if (!html.includes('/projects/philanthropy-research/')) {
-    const card = '<article class="project-card"><p class="eyebrow">Exploratory project</p><h2>Research Behind Philanthropy Decisions</h2><p>A question that grew out of doing the work once: when advisers or smaller family offices need to map a cause, screen organisations and prepare for diligence, who has the bandwidth to do the research?</p><a class="read-link" href="/projects/philanthropy-research/">Explore the question →</a></article>';
+    const card = '<article class="project-card"><p class="eyebrow">Philanthropy research</p><p class="project-status"><span>Current state</span> Exploring a possible need · working demonstration</p><h2>Research Behind Philanthropy Decisions</h2><p>A question that grew out of doing the work once: when advisers or smaller family offices need to map a cause, screen organisations and prepare for diligence, who has the bandwidth to do the research?</p><a class="read-link" href="/projects/philanthropy-research/">Explore the question →</a></article>';
     html = html.replace('</div></section></main>', `${card}</div></section></main>`);
     fs.writeFileSync(projectsIndex, html);
   }

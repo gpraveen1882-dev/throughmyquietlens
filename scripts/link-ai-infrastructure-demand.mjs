@@ -19,12 +19,9 @@ if (fs.existsSync(projectsPage)) {
   html = html.replace(/<article class="project-card"><p class="eyebrow">Evidence monitor<\/p><h2>AI Downstream Demand Monitor<\/h2>[\s\S]*?<\/article>/g, '');
   html = html.replace(/<article class="project-card"><p class="eyebrow">Paired inquiry(?: · Data centres &amp; AI)?<\/p><h2>AI Infrastructure &amp; Demand<\/h2>[\s\S]*?<\/article>/g, '');
 
-  const bridge = `<div style="max-width:760px;margin:0 auto 26px;font-family:Georgia,serif;font-size:1.04rem;line-height:1.6;color:#414846">A recurring question across these projects is how AI moves from <strong>build</strong> to <strong>use</strong> to <strong>value</strong> — and what that growth means for the resources required to sustain it.</div>`;
-  if (!html.includes('A recurring question across these projects')) {
-    html = html.replace('<div class="container project-grid">', `<div class="container">${bridge}</div><div class="container project-grid">`);
-  }
+  html = html.replace(/<div class="container"><div style="max-width:760px[\s\S]*?A recurring question across these projects[\s\S]*?<\/div><\/div>/g, '');
 
-  const card = `<article class="project-card"><p class="eyebrow">Connected inquiry · Data centres, AI &amp; resources</p><h2>AI Infrastructure &amp; Demand</h2><p>Follow one system from end to end: what is being built, whether adoption and usage are growing underneath it, whether that use is creating value, and what continued growth means for resource demand.</p><a class="read-link" href="/projects/ai-infrastructure-demand/">Explore the inquiry →</a></article>`;
+  const card = `<article class="project-card"><p class="eyebrow">Data centres, AI &amp; resources</p><p class="project-status"><span>Current state</span> Early working prototype</p><h2>AI Infrastructure &amp; Demand</h2><p>Follow one system from end to end: what is being built, whether adoption and usage are growing underneath it, whether that use is creating value, and what continued growth means for resource demand.</p><a class="read-link" href="/projects/ai-infrastructure-demand/">Explore the inquiry →</a></article>`;
   html = html.replace('<div class="container project-grid">', `<div class="container project-grid">${card}`);
   fs.writeFileSync(projectsPage, html);
 }
